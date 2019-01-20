@@ -26,7 +26,7 @@ public class MoveController : MonoBehaviour
     {
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
-        Debug.Log(h.ToString() + "........." + v.ToString());
+        //Debug.Log(h.ToString() + "........." + v.ToString());
 
         hForce += h * 0.01f;
         if (hForce < HorizontalMinSpeed)
