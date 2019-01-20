@@ -19,7 +19,7 @@ public class NumberEffect : MonoBehaviour
 
     private void UpdateSprite(int id)
     {
-        SpriteRender _sprite = transform.GetComponent<SpriteRender>();
+        SpriteRenderer _sprite = transform.GetComponent<SpriteRenderer>();
         if (_sprite == null) return;
         //id 0:点 1：1   2：8   3：9
         switch (id)
