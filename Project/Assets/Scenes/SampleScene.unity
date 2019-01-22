@@ -568,6 +568,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TwoWheelsCar
       objectReference: {fileID: 0}
+    - target: {fileID: 404753750507431050, guid: fa16fb3bbf87a0a40a8832595666c7e9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 932674363170958819, guid: fa16fb3bbf87a0a40a8832595666c7e9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -633,5 +638,6 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1529639780, guid: fa16fb3bbf87a0a40a8832595666c7e9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: fa16fb3bbf87a0a40a8832595666c7e9, type: 3}
