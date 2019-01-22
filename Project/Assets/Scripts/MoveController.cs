@@ -15,21 +15,26 @@ public class MoveController : MonoBehaviour
     public float goundY = -0.47f;  //车轮在地面时所处位置
     public float velocityY = 5;
     public float jumpForce = 10;
+    public float gravity = 10;
+    public float carUpSpeed = 0f;
+    public const float initUpSpeed = 5; // m/s
+    private bool hasPressedJumpButton = false;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        //rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        MoveControl();
-    }
+    //void Update()
+    //{
+    //    MoveControl();
+    //}
 
     private void FixedUpdate()
     {
-        //this.ObjJump();
+        this.Jump();
+        this.CarMove();
     }
 
     private void MoveControl()
@@ -48,21 +53,39 @@ public class MoveController : MonoBehaviour
 
     private bool IsOnGround()
     {
-        if (this.transform.position.y <= -goundY)
+        if (this.transform.position.y <= goundY)
             return true;
         return false;
     }
 
-    private void ObjJump()
+    private void Jump()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            this.hasPressedJumpButton = true;
             if (IsOnGround())
-            {
-                var rb = this.GetComponent<Rigidbody>();
-                rb.velocity += new Vector3(0, velocityY, 0);
-                rb.AddForce(Vector3.up * jumpForce);
-            }
+                carUpSpeed = initUpSpeed;
         }
+        else
+        {
+            this.hasPressedJumpButton = false;
+        }
+        if (hasPressedJumpButton || !IsOnGround())
+        {
+            var deltaTime = Time.deltaTime;
+            var upHeight = carUpSpeed * deltaTime - gravity * deltaTime * deltaTime * 0.5f;
+            this.transform.Translate(0, upHeight, 0);
+            carUpSpeed -= gravity * deltaTime;
+        }
+        else
+        {
+            carUpSpeed = 0f;
+        }
+    }
+
+    private void CarMove()
+    {
+        
+        
     }
 }
