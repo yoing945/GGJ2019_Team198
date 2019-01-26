@@ -43,7 +43,8 @@ public class ElementNameMgr
     }
 
     public Dictionary<string, string[]> elementsDict;
-    
+    public Dictionary<string[], string[]> netElementRelationDict;   //网状结构元素关系字典
+
     public void Init()
     {
         elementsDict = new Dictionary<string, string[]>();
@@ -56,8 +57,15 @@ public class ElementNameMgr
         elementsDict.Add("IllMan", new string[] { "生病男性", ElementName.IllMan });
         elementsDict.Add("IllWomen", new string[] { "生病女性", ElementName.IllWomen });
         elementsDict.Add("Boy", new string[] { "男孩", ElementName.Boy });
-        elementsDict.Add("IllWomen", new string[] { "女孩", ElementName.Girl });
+        elementsDict.Add("Girl", new string[] { "女孩", ElementName.Girl });
 
+    }
+
+    //[yl] 网状结构
+    public void NetDictInit()
+    {
+        netElementRelationDict = new Dictionary<string[], string[]>();
+        
     }
 }
 
