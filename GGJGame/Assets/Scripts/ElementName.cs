@@ -14,14 +14,10 @@ public class ElementName
     public const string Money = "Money";                                //单位金钱
 
     //[yl] Combine Element Name
-    public const string HealthMan = Health + Man;                       //健康男性
-    public const string HealthWomen = Health + Women;                   //健康女性
     public const string IllMan = Ill + Man;                             //生病男性
     public const string IllWomen = Ill + Women;                         //生病女性
-    public const string HealthBoy = HealthMan + Time;                   //健康男孩
-    public const string HealthGirl = HealthWomen + Time;                //健康女孩
-    public const string HealthYoungMan = HealthBoy + Time;              //健康男青年
-    public const string HealthYoungWomen = HealthGirl + Time;           //健康女青年
+    public const string Boy = Man + Women;                              //男孩
+    public const string Girl = Man + Women;                             //女孩
 
     //[yl] Has Result Element Name
 
@@ -57,14 +53,10 @@ public class ElementNameMgr
         elementsDict.Add("Ill", new string[] { "生病", ElementName.Ill });
         elementsDict.Add("Time", new string[] { "单位时间", ElementName.Time });
         elementsDict.Add("Money", new string[] { "单位金钱", ElementName.Money });
-        elementsDict.Add("HealthMan", new string[] { "健康男性", ElementName.HealthMan });
-        elementsDict.Add("HealthMan", new string[] { "健康女性", ElementName.HealthMan });
         elementsDict.Add("IllMan", new string[] { "生病男性", ElementName.IllMan });
         elementsDict.Add("IllWomen", new string[] { "生病女性", ElementName.IllWomen });
-        elementsDict.Add("HealthBoy", new string[] { "健康男孩", ElementName.HealthBoy });
-        elementsDict.Add("HealthGirl", new string[] { "健康女孩", ElementName.HealthGirl });
-        elementsDict.Add("HealthYoungMan", new string[] { "健康男青年", ElementName.HealthYoungMan });
-        elementsDict.Add("HealthYoungWomen", new string[] { "健康女青年", ElementName.HealthYoungWomen });
+        elementsDict.Add("Boy", new string[] { "男孩", ElementName.Boy });
+        elementsDict.Add("IllWomen", new string[] { "女孩", ElementName.Girl });
 
     }
 }
