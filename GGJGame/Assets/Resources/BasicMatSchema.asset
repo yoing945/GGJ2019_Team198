@@ -12,4 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f558425a653e8394e99b71d5c062876a, type: 3}
   m_Name: BasicMatSchema
   m_EditorClassIdentifier: 
-  basicMatData: []
+  basicMatData:
+  - Name: "\u7537\u4EBA"
+    IsLeft: 1
+    Label: Man
+  - Name: "\u5973\u4EBA"
+    IsLeft: 1
+    Label: Woman
+  - Name: "\u65F6\u95F4"
+    IsLeft: 1
+    Label: Time
+  - Name: "\u91D1\u94B1"
+    IsLeft: 1
+    Label: Money
+  - Name: "\u5065\u5EB7"
+    IsLeft: 1
+    Label: Health
+  - Name: "\u75BE\u75C5"
+    IsLeft: 1
+    Label: Ill
