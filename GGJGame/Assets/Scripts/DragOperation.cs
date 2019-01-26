@@ -65,7 +65,8 @@ public class DragOperation : MonoBehaviour
             {
                 isDrag = true;
                 isCheck = false;
-                
+                if (range != null)
+                    range.vertical = false;
             }
 
         }
@@ -75,7 +76,7 @@ public class DragOperation : MonoBehaviour
             target = null;
             if (range != null)
             {
-                range.movementType = ScrollRect.MovementType.Elastic;
+                range.vertical = true;
                 range = null;
             }
             if (isDrag)
@@ -83,29 +84,29 @@ public class DragOperation : MonoBehaviour
                 isDrag = false;
                 Destroy(moveTarget.gameObject);
                 moveTarget = null;
+
             }
         }
 
         if (isDrag)
         {
+            Debug.Log(Input.mousePosition);
             if (moveTarget == null)
             {
                 if (target == null) { isDrag = false; return; }
                 moveTarget = Instantiate(target);
                 moveTarget.transform.SetParent(transform);
                 moveTarget.GetComponent<RectTransform>().sizeDelta = target.GetComponent<RectTransform>().sizeDelta;
-                //moveTarget.GetComponent<RectTransform>().pivot = new Vector2(0.5f, 0.5f);
-                //target.transform.position = go.transform.position;
-                //moveTarget.GetComponent<RectTransform>().position = Vector3.zero;
-                moveTarget.GetComponent<RectTransform>().anchoredPosition = Input.mousePosition;
-                //Debug.Log(Input.mousePosition+"  "+mo)
-
+                moveTarget.GetComponent<RectTransform>().pivot = new Vector2(0f, 0f);
+                moveTarget.GetComponent<RectTransform>().anchoredPosition = target.transform.position;
+                            
             }
-            //target.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             if (moveTarget != null)
             {
-                moveTarget.GetComponent<RectTransform>().anchoredPosition = Input.mousePosition;
-                range.movementType = ScrollRect.MovementType.Clamped;
+                Vector2 position;
+                RectTransformUtility.ScreenPointToLocalPointInRectangle(GetComponent<RectTransform>(), Input.mousePosition, null, out position);
+                moveTarget.GetComponent<RectTransform>().anchoredPosition = position;
+                
             }
         }
 
