@@ -8,6 +8,14 @@ public class MaterialData
 {
     public string Name;
     public bool IsLeft;
+    public string Label;
+
+    public MaterialData(string name, bool left, string label)
+    {
+        Name = name;
+        IsLeft = left;
+        Label = label;
+    }
 }
 
 public class GenerateMaterials : MonoBehaviour
@@ -18,16 +26,19 @@ public class GenerateMaterials : MonoBehaviour
 
     public List<MaterialData> matList = new List<MaterialData>();
 
-    // Start is called before the first frame update
+    public Button btn_compose;
+    public Transform root_drag;
+
+    public GameObject flash;
+
     void Start()
     {
         //读表生成每关所需素材
         GenerateMats();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        if (btn_compose != null)
+        {
+            btn_compose.onClick.AddListener(OnBtnComposeClick);
+        }
     }
 
     private void GenerateMats()
@@ -37,17 +48,65 @@ public class GenerateMaterials : MonoBehaviour
 
         for (int i = 0; i < matList.Count; i++)
         {
-            GameObject mat = Instantiate(prefab_mat);
-            mat.GetComponentInChildren<Text>().text = matList[i].Name;
-            if (matList[i].IsLeft)
-            {
-                mat.transform.SetParent(root_left);
-            }
-            else
-            {
-                mat.transform.SetParent(root_right);
-            }
+            GenerateMat(matList[i]);
         }
     }
 
+    private void GenerateMat(MaterialData data)
+    {
+        GameObject mat = Instantiate(prefab_mat);
+        mat.GetComponentInChildren<Text>().text = data.Name;
+        //显示名字和合成标签可能不同
+        MaterialProperty prop = mat.AddComponent<MaterialProperty>();
+        prop.SetProperty(data.Name, data.IsLeft, data.Label);
+        if (data.IsLeft)
+        {
+            mat.transform.SetParent(root_left);
+        }
+        else
+        {
+            mat.transform.SetParent(root_right);
+        }
+    }
+
+    private void OnBtnComposeClick()
+    {
+        StartCoroutine(Compose());
+    }
+
+    private IEnumerator Compose()
+    {
+        if (root_drag.childCount < 2)
+            yield break;
+        //得到合成因子，并删除素材
+        string[] str_arr = new string[root_drag.childCount];
+        for (int i = 0; i < str_arr.Length; i++)
+        {
+            Transform mat = root_drag.GetChild(i);
+            str_arr[i] = mat.GetComponentInChildren<MaterialProperty>().Label;
+            Destroy(root_drag.GetChild(i).gameObject);
+        }
+
+        //照片还是新素材？
+
+        //播放闪光动画
+        if (flash != null)
+        {
+            flash.SetActive(true);
+            yield return new WaitForSeconds(0.2f);
+            flash.SetActive(false);
+        }
+
+        //合成新素材
+        string newMat = CombineController.DoCombine(str_arr);
+        if (!string.IsNullOrEmpty(newMat))
+        {
+            var dic = ElementNameMgr.getInstance().elementsDict;
+            if (dic.ContainsKey(newMat))
+            {
+                string name = dic[newMat][0];
+                GenerateMat(new MaterialData(name, false, newMat));
+            }
+        }
+    }
 }
