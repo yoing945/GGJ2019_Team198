@@ -37,7 +37,7 @@ public class GenerateMaterials : MonoBehaviour
     public Transform root_char;
     public GameObject prefab_char;
     private List<Vector2> photo_char_pos = new List<Vector2>();
-    
+
     void Start()
     {
         //读表生成每关所需素材
@@ -52,7 +52,7 @@ public class GenerateMaterials : MonoBehaviour
     private void LoadRes()
     {
         var res = Resources.Load("PosSchema") as Res;
-        if(res != null)
+        if (res != null)
         {
             photo_char_pos = res.photoPos;
         }
@@ -124,6 +124,8 @@ public class GenerateMaterials : MonoBehaviour
             {
                 //显示
                 var photoSprites = CombineController.getResultSprites(str_arr);
+                if (photoSprites == null)
+                    yield break;
                 if (photoSprites.Count > 0 && photo_bg != null)
                     photo_bg.sprite = photoSprites[0];
                 if (photoSprites.Count > 1 && prefab_char != null)
@@ -168,7 +170,7 @@ public class GenerateMaterials : MonoBehaviour
     private void MessPosOrder()
     {
         int sum = photo_char_pos.Count;
-        for(int i = 0; i < sum; i++)
+        for (int i = 0; i < sum; i++)
         {
             int rand = Random.Range(0, sum);
             var item = photo_char_pos[rand];
