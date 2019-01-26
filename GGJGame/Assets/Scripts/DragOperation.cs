@@ -46,6 +46,7 @@ public class DragOperation : MonoBehaviour
 
         if (Input.GetMouseButton(0) && isCheck)//判断是移动 还是拖动
         {
+            if (isDrag) { return; }
             List<RaycastResult> res = GetOverUI(canvas);
             if (res == null) return;
             isSlide = false;
@@ -64,7 +65,7 @@ public class DragOperation : MonoBehaviour
             {
                 isDrag = true;
                 isCheck = false;
-                range.movementType = ScrollRect.MovementType.Clamped;
+                
             }
 
         }
@@ -72,8 +73,11 @@ public class DragOperation : MonoBehaviour
         {
             isCheck = false;
             target = null;
-            if(range !=null )
+            if (range != null)
+            {
                 range.movementType = ScrollRect.MovementType.Elastic;
+                range = null;
+            }
             if (isDrag)
             {
                 isDrag = false;
@@ -95,10 +99,14 @@ public class DragOperation : MonoBehaviour
                 //moveTarget.GetComponent<RectTransform>().position = Vector3.zero;
                 moveTarget.GetComponent<RectTransform>().anchoredPosition = Input.mousePosition;
                 //Debug.Log(Input.mousePosition+"  "+mo)
+
             }
             //target.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            if(moveTarget != null)
-            moveTarget.GetComponent<RectTransform>().anchoredPosition = Input.mousePosition;
+            if (moveTarget != null)
+            {
+                moveTarget.GetComponent<RectTransform>().anchoredPosition = Input.mousePosition;
+                range.movementType = ScrollRect.MovementType.Clamped;
+            }
         }
 
     }
