@@ -1177,16 +1177,24 @@ MonoBehaviour:
   matList:
   - Name: "\u7537\u4EBA"
     IsLeft: 1
+    Label: Man
   - Name: "\u5973\u4EBA"
     IsLeft: 1
+    Label: Woman
   - Name: "\u65F6\u95F4"
     IsLeft: 1
+    Label: Time
   - Name: "\u91D1\u94B1"
     IsLeft: 1
+    Label: Money
   - Name: "\u5065\u5EB7"
-    IsLeft: 0
+    IsLeft: 1
+    Label: Health
   - Name: "\u75BE\u75C5"
-    IsLeft: 0
+    IsLeft: 1
+    Label: Ill
+  btn_compose: {fileID: 589842454}
+  root_drag: {fileID: 1523525646}
 --- !u!1 &1314365005
 GameObject:
   m_ObjectHideFlags: 0
