@@ -43,9 +43,7 @@ public class GenerateMaterials : MonoBehaviour
         LoadRes();
         GenerateMats();
         if (btn_compose != null)
-        {
             btn_compose.onClick.AddListener(OnBtnComposeClick);
-        }
     }
 
     private void LoadRes()
@@ -55,9 +53,7 @@ public class GenerateMaterials : MonoBehaviour
             photo_char_pos = resPos.photoPos;
         var resMaterial = Resources.Load("BasicMatSchema") as ResMaterial;
         if (resMaterial != null)
-        {
             basicMatList = resMaterial.basicMatData;
-        }
     }
 
     private void GenerateMats()
@@ -66,9 +62,7 @@ public class GenerateMaterials : MonoBehaviour
             return;
 
         for (int i = 0; i < basicMatList.Count; i++)
-        {
             GenerateMat(basicMatList[i]);
-        }
     }
 
     private GameObject GenerateMat(MaterialData data)
@@ -79,13 +73,9 @@ public class GenerateMaterials : MonoBehaviour
         MaterialProperty prop = mat.AddComponent<MaterialProperty>();
         prop.SetProperty(data.Name, data.IsLeft, data.Label);
         if (data.IsLeft)
-        {
             mat.transform.SetParent(root_left);
-        }
         else
-        {
             mat.transform.SetParent(root_right);
-        }
         return mat;
     }
 
@@ -129,15 +119,16 @@ public class GenerateMaterials : MonoBehaviour
                 if (photoSprites == null)
                     yield break;
                 if (photoSprites.Count > 0 && photo_bg != null)
+                {
+                    photo_bg.transform.parent.gameObject.SetActive(true);
                     photo_bg.sprite = photoSprites[0];
+                }
                 if (photoSprites.Count > 1 && prefab_char != null)
                 {
                     //每次生成前打乱固定位置
                     MessPosOrder();
                     for (int i = 1; i < photoSprites.Count; i++)
-                    {
                         GenerateChar(photoSprites[i], i);
-                    }
                 }
                 yield break;
             }
