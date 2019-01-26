@@ -15,6 +15,11 @@ public class DragOperation : MonoBehaviour
     private GameObject moveTarget = null;
     private ScrollRect range = null;
     public GameObject canvas;
+    public float LeftX = 0;
+    public float UpY = 0;
+    public float RightX = 0;
+    public float DownY = 0;
+
     //int m = -1;
 
     void Start()
@@ -81,16 +86,26 @@ public class DragOperation : MonoBehaviour
             }
             if (isDrag)
             {
-                isDrag = false;
-                Destroy(moveTarget.gameObject);
-                moveTarget = null;
+                isDrag = false;               
+                Vector2 position;
+                RectTransformUtility.ScreenPointToLocalPointInRectangle(GetComponent<RectTransform>(), Input.mousePosition, null, out position);
+                Debug.Log(position);
+                if (!(position.x <= RightX && position.x >= LeftX && position.y <= UpY&& position.y >= DownY))
+                  Destroy(moveTarget.gameObject);
+                else
+                {
+                    Rigidbody2D rigidbody= moveTarget.AddComponent<Rigidbody2D>();
+                    rigidbody.gravityScale = 20;
+                    moveTarget.AddComponent<BoxCollider2D>();
 
+                }
+                moveTarget.gameObject.tag = "Untagged";
+                moveTarget = null;
             }
         }
 
         if (isDrag)
         {
-            Debug.Log(Input.mousePosition);
             if (moveTarget == null)
             {
                 if (target == null) { isDrag = false; return; }
