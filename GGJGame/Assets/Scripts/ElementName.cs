@@ -19,6 +19,7 @@ public class ElementName
     public const string Girl = "Girl";                                  //女孩
 
     //[yl] Has Result Element Name
+    public const string Sankouzhijia = "Sankouzhijia";                  //三口之家
 
 }
 
@@ -31,9 +32,9 @@ public class ElementNameMgr
     //constructor
     private ElementNameMgr()
     {
-        Init();
-        NetDictInit();
-
+        InitElementsCNDict();
+        InitNetDict();
+        InitResultElementDict();
     }
 
     public static ElementNameMgr getInstance()
@@ -45,8 +46,9 @@ public class ElementNameMgr
 
     private Dictionary<string, string> elementsCNDict;                  //中英文对照字典
     private Dictionary<string[], string[]> netElementRelationDict;      //网状结构元素关系字典
+    private List<string> elementsHasResult;                             //中英文对照字典
 
-    public void Init()
+    private void InitElementsCNDict()
     {
         elementsCNDict = new Dictionary<string, string>();
         elementsCNDict.Add(ElementName.Man, "男性");
@@ -54,28 +56,49 @@ public class ElementNameMgr
         elementsCNDict.Add(ElementName.Ill, "生病");
         elementsCNDict.Add(ElementName.Time, "单位时间");
         elementsCNDict.Add(ElementName.Money, "单位金钱");
+
         elementsCNDict.Add(ElementName.IllMan, "生病男性");
         elementsCNDict.Add(ElementName.IllWoman, "生病女性");
         elementsCNDict.Add(ElementName.Boy, "男孩");
         elementsCNDict.Add(ElementName.Girl, "女孩");
 
+        elementsCNDict.Add(ElementName.Sankouzhijia, "三口之家");
+
     }
 
-    //[yl] 网状结构
-    public void NetDictInit()
+    private void InitNetDict()
     {
         netElementRelationDict = new Dictionary<string[], string[]>();
+        //combine Boy or Girl
         netElementRelationDict.Add(
             new string[] { ElementName.Man, ElementName.Woman, ElementName.Time },
             new string[] { ElementName.Boy, ElementName.Girl});
+        //combine IllMan
         netElementRelationDict.Add(
             new string[] { ElementName.Man, ElementName.Ill },
             new string[] { ElementName.IllMan });
+        //combine IllWoman
         netElementRelationDict.Add(
             new string[] { ElementName.Woman, ElementName.Ill },
             new string[] { ElementName.IllWoman });
+        //combine Sankouzhijia [girl]
+        netElementRelationDict.Add(
+            new string[] { ElementName.Woman, ElementName.Man, ElementName.Girl },
+            new string[] { ElementName.Sankouzhijia });
+        //combine Sankouzhijia [boy]
+        netElementRelationDict.Add(
+            new string[] { ElementName.Woman, ElementName.Man, ElementName.Boy },
+            new string[] { ElementName.Sankouzhijia });
+
     }
 
+    private void InitResultElementDict()
+    {
+        elementsHasResult = new List<string>();
+        elementsHasResult.Add(ElementName.Sankouzhijia);
+    }
+
+    //[yl] 获取中文名
     public string getElementCNName(string enName)
     {
         if (elementsCNDict.ContainsKey(enName))
@@ -84,10 +107,17 @@ public class ElementNameMgr
         return "";
     }
 
+    //[yl] 获取网状关系字典
     public Dictionary<string[], string[]> getNetElementRelationDict()
     {
         return netElementRelationDict;
     }
+
+    public List<string> getElementsHasResult()
+    {
+        return elementsHasResult;
+    }
+
 }
 
 

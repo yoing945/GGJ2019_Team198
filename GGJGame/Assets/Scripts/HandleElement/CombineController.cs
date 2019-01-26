@@ -41,4 +41,21 @@ public class CombineController
         }
         return "";
     }
+
+    //[yl] 元素是否在结果列表
+    public static bool isInResultList(string eName)
+    {
+        if (ElementNameMgr.getInstance().getElementsHasResult().Contains(eName))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    //[yl] 获取结果图片列表
+    public static List<Sprite> getResultSprites(string[] elements)
+    {
+
+        return null;
+    }
 }
