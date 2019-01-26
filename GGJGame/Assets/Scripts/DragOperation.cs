@@ -12,7 +12,7 @@ public class DragOperation : MonoBehaviour
     private bool isSlide = false;
     private GameObject target = null;
 
-    private GameObject moveTarget = null;
+    private RectTransform moveTarget = null;
     private ScrollRect range = null;
     public GameObject canvas;
     public float LeftX = 0;
@@ -89,13 +89,15 @@ public class DragOperation : MonoBehaviour
                 isDrag = false;               
                 Vector2 position;
                 RectTransformUtility.ScreenPointToLocalPointInRectangle(GetComponent<RectTransform>(), Input.mousePosition, null, out position);
-                if (!(position.x <= RightX && position.x >= LeftX && position.y <= UpY&& position.y >= DownY))
-                  Destroy(moveTarget.gameObject);
+                if (!(position.x <= RightX && position.x >= LeftX && position.y <= UpY && position.y >= DownY))
+                    Destroy(moveTarget.gameObject);
                 else
                 {
-                    Rigidbody2D rigidbody= moveTarget.AddComponent<Rigidbody2D>();
+                    Rigidbody2D rigidbody = moveTarget.gameObject.AddComponent<Rigidbody2D>();
                     rigidbody.gravityScale = 20;
-                    moveTarget.AddComponent<BoxCollider2D>();
+                    BoxCollider2D boxCollider = moveTarget.gameObject.AddComponent<BoxCollider2D>();
+                    boxCollider.offset = moveTarget.sizeDelta * 0.5f;
+                    boxCollider.size = moveTarget.sizeDelta;
 
                 }
                 moveTarget.gameObject.tag = "Untagged";
@@ -108,18 +110,20 @@ public class DragOperation : MonoBehaviour
             if (moveTarget == null)
             {
                 if (target == null) { isDrag = false; return; }
-                moveTarget = Instantiate(target);
-                moveTarget.transform.SetParent(transform);
-                moveTarget.GetComponent<RectTransform>().sizeDelta = target.GetComponent<RectTransform>().sizeDelta;
-                moveTarget.GetComponent<RectTransform>().pivot = new Vector2(0f, 0f);
-                moveTarget.GetComponent<RectTransform>().anchoredPosition = target.transform.position;
+                GameObject go = Instantiate(target);
+                moveTarget = go.GetComponent<RectTransform>();
+                moveTarget.SetParent(transform);
+
+                moveTarget.sizeDelta = target.GetComponent<RectTransform>().sizeDelta;
+                moveTarget.pivot =Vector2.zero;
+                moveTarget.anchoredPosition = target.transform.position;
                             
             }
             if (moveTarget != null)
             {
                 Vector2 position;
                 RectTransformUtility.ScreenPointToLocalPointInRectangle(GetComponent<RectTransform>(), Input.mousePosition, null, out position);
-                moveTarget.GetComponent<RectTransform>().anchoredPosition = position;
+                moveTarget.anchoredPosition = position;
                 
             }
         }
