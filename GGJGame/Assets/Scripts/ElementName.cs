@@ -7,7 +7,7 @@ public class ElementName
 {
     //[yl] Base Element Name
     public const string Man = "Man";                                    //男性
-    public const string Women = "Women";                                //女性
+    public const string Woman = "Woman";                                //女性
     public const string Health = "Health";                              //健康
     public const string Ill = "Ill";                                    //生病
     public const string Time = "Time";                                  //单位时间
@@ -15,9 +15,9 @@ public class ElementName
 
     //[yl] Combine Element Name
     public const string IllMan = Ill + Man;                             //生病男性
-    public const string IllWomen = Ill + Women;                         //生病女性
-    public const string Boy = Man + Women;                              //男孩
-    public const string Girl = Man + Women;                             //女孩
+    public const string IllWoman = Ill + Woman;                         //生病女性
+    public const string Boy = Man + Woman;                              //男孩
+    public const string Girl = Man + Woman;                             //女孩
 
     //[yl] Has Result Element Name
 
@@ -49,13 +49,13 @@ public class ElementNameMgr
     {
         elementsDict = new Dictionary<string, string[]>();
         elementsDict.Add("Man", new string[] { "男性", ElementName.Man });
-        elementsDict.Add("Women", new string[] { "女性", ElementName.Women });
+        elementsDict.Add("Woman", new string[] { "女性", ElementName.Woman });
         elementsDict.Add("Health", new string[] { "健康", ElementName.Health });
         elementsDict.Add("Ill", new string[] { "生病", ElementName.Ill });
         elementsDict.Add("Time", new string[] { "单位时间", ElementName.Time });
         elementsDict.Add("Money", new string[] { "单位金钱", ElementName.Money });
         elementsDict.Add("IllMan", new string[] { "生病男性", ElementName.IllMan });
-        elementsDict.Add("IllWomen", new string[] { "生病女性", ElementName.IllWomen });
+        elementsDict.Add("IllWoman", new string[] { "生病女性", ElementName.IllWoman });
         elementsDict.Add("Boy", new string[] { "男孩", ElementName.Boy });
         elementsDict.Add("Girl", new string[] { "女孩", ElementName.Girl });
 
@@ -65,7 +65,6 @@ public class ElementNameMgr
     public void NetDictInit()
     {
         netElementRelationDict = new Dictionary<string[], string[]>();
-        
     }
 }
 
