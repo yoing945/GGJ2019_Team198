@@ -162,4 +162,90 @@ public class ElementNameMgr
 
 }
 
+public class SpriteResMgr
+{
+    private static SpriteResMgr instatnce;
+
+    //constructor
+    private SpriteResMgr()
+    {
+        Init();
+    }
+
+    public static SpriteResMgr getInstance()
+    {
+        if (null == instatnce)
+            instatnce = new SpriteResMgr();
+        return instatnce;
+    }
+
+
+    private string[] backGroundKeyWords = {"Ill", "Pool", "Rich"};
+    private Sprite[] backGrounds;
+    private Sprite[] chars;
+
+    public void Init()
+    {
+        backGrounds = Resources.LoadAll<Sprite>("BackGround");
+        chars = Resources.LoadAll<Sprite>("Character");
+    }
+
+    public Sprite[] getAllBGSprites()
+    {
+        return backGrounds;
+    }
+
+    public Sprite[] getCharsSprites()
+    {
+        return chars;
+    }
+
+    public string[] getBGKeyWords()
+    {
+        return backGroundKeyWords;
+    }
+
+    private Sprite getKeyWordBGSprite(string keyWord)
+    {
+        foreach(var s in backGrounds)
+        {
+            if (s.name.Contains(keyWord))
+                return s;
+        }
+        Debug.LogError("[yl] no such keyword " + keyWord + " backGround");
+        return null;
+    }
+
+    private Sprite[] getNormalBGSprites()
+    {
+        var sprites = new List<Sprite>();
+        foreach(var s in backGrounds)
+        {
+            foreach(var keyword in backGroundKeyWords)
+            {
+                if (s != getKeyWordBGSprite(keyword))
+                    sprites.Add(s);
+            }
+        }
+        return sprites.ToArray();
+    }
+
+    public Sprite getBGSprite(string[] elements)
+    {
+        foreach (var keyword in backGroundKeyWords)
+        {
+            foreach (var elementName in elements)
+            {
+                if (elementName.Contains(keyword))
+                {
+                    return getKeyWordBGSprite(keyword);
+                }
+            }
+        }
+        var normalBGs = getNormalBGSprites();
+        int index = Random.Range(0, normalBGs.Length);
+        return normalBGs[index];
+    }
+}
+
 

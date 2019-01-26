@@ -64,7 +64,11 @@ public class CombineController
     //[yl] 获取结果图片列表
     public static List<Sprite> getResultSprites(string[] elements)
     {
+        var spritesMgr = SpriteResMgr.getInstance();
+        var bgKeyWords = spritesMgr.getBGKeyWords();
+        var sprites = new List<Sprite>();
+        sprites.Add(spritesMgr.getBGSprite(elements));
 
-        return null;
+        return sprites;
     }
 }
