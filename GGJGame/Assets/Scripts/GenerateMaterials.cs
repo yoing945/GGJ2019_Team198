@@ -36,15 +36,25 @@ public class GenerateMaterials : MonoBehaviour
     public Image photo_bg;
     public Transform root_char;
     public GameObject prefab_char;
-    public List<Vector2> photo_char_pos = new List<Vector2>();
+    private List<Vector2> photo_char_pos = new List<Vector2>();
     
     void Start()
     {
         //读表生成每关所需素材
+        LoadRes();
         GenerateMats();
         if (btn_compose != null)
         {
             btn_compose.onClick.AddListener(OnBtnComposeClick);
+        }
+    }
+
+    private void LoadRes()
+    {
+        var res = Resources.Load("PosSchema") as Res;
+        if(res != null)
+        {
+            photo_char_pos = res.photoPos;
         }
     }
 
@@ -150,7 +160,8 @@ public class GenerateMaterials : MonoBehaviour
         GameObject character = Instantiate(prefab_char);
         character.GetComponent<Image>().sprite = spr;
         character.transform.SetParent(root_char);
-        character.GetComponent<RectTransform>().anchoredPosition = photo_char_pos[index];
+        if (photo_char_pos.Count > index)
+            character.GetComponent<RectTransform>().anchoredPosition = photo_char_pos[index];
         return character;
     }
 
