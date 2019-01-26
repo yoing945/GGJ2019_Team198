@@ -47,6 +47,8 @@ public class ElementNameMgr
     private Dictionary<string, string> elementsCNDict;                  //中英文对照字典
     private Dictionary<string[], string[]> netElementRelationDict;      //网状结构元素关系字典
     private List<string> elementsHasResult;                             //中英文对照字典
+    private Dictionary<string, int> elementsNumLimitDict;               //元素个数限制,超过个数限制的元素将不会加入组合
+
 
     private void InitElementsCNDict()
     {
@@ -98,6 +100,13 @@ public class ElementNameMgr
         elementsHasResult.Add(ElementName.Sankouzhijia);
     }
 
+    private void InitElementsNumLimitDict()
+    {
+        elementsNumLimitDict = new Dictionary<string, int>();
+        elementsNumLimitDict.Add(ElementName.Time, 2);
+        elementsNumLimitDict.Add(ElementName.Money, 2);
+    }
+
     //[yl] 获取中文名
     public string getElementCNName(string enName)
     {
@@ -113,9 +122,41 @@ public class ElementNameMgr
         return netElementRelationDict;
     }
 
+    //[yl] 获取需要显示结果的元素列表
     public List<string> getElementsHasResult()
     {
         return elementsHasResult;
+    }
+
+    //[yl] 获取元素个数限制
+    public int getElementNumLimitValue(string eName)
+    {
+        if (elementsNumLimitDict.ContainsKey(eName))
+        {
+            return elementsNumLimitDict[eName];
+        }
+        return 0;
+    }
+
+    //是否忽略个数限制
+    public bool hasNumLimit(string[] inputElements)
+    {
+        int curNum = 0;
+        foreach(var key in elementsNumLimitDict.Keys)
+        {
+            foreach(var element in inputElements)
+            {
+                if(element == key)
+                {
+                    curNum++;
+                    if(curNum > elementsNumLimitDict[key])
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
 }
