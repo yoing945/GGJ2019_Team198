@@ -180,7 +180,7 @@ public class SpriteResMgr
     }
 
 
-    private string[] backGroundKeyWords = {"Ill", "Pool", "Rich"};
+    private string[] backGroundKeyWords = {"Ill", "Poor", "Rich"};
     private Sprite[] backGrounds;
     private Sprite[] chars;
 
