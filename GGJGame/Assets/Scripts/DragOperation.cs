@@ -7,54 +7,102 @@ using UnityEngine.UI;
 public class DragOperation : MonoBehaviour
 {
 
-
-    private Vector3 lastMousePosition = Vector3.zero;
     private bool isDrag = false;
+    private bool isCheck = false;
+    private bool isSlide = false;
     private GameObject target = null;
 
+    private GameObject moveTarget = null;
+    private ScrollRect range = null;
     public GameObject canvas;
-    // Start is called before the first frame update
+    //int m = -1;
+
     void Start()
     {
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
 
-            isDrag = true;
+        
+
+        if (Input.GetMouseButtonDown(0) && !isCheck)
+        {
+            List<RaycastResult> res = GetOverUI(canvas);
+            if (res == null) return;
+            isCheck = true;
+
+            if (target == null)  //存储第一次点击的目标
+            {
+                for (int i = 0; i < res.Count; i++)
+                {
+                    if (res[i].gameObject.tag == "material")
+                    {
+                        target = res[i].gameObject;
+                    }
+                }
+            }
+        }
+
+        if (Input.GetMouseButton(0) && isCheck)//判断是移动 还是拖动
+        {
+            List<RaycastResult> res = GetOverUI(canvas);
+            if (res == null) return;
+            isSlide = false;
+
+            for (int j = 0; j < res.Count; j++)
+            {
+                if (res[j].gameObject.tag == "range")
+                {
+                    isSlide = true;
+                    range = res[j].gameObject.GetComponent<ScrollRect>();
+                    break;
+                }
+            }
+
+            if (!isSlide)
+            {
+                isDrag = true;
+                isCheck = false;
+                range.movementType = ScrollRect.MovementType.Clamped;
+            }
 
         }
         if (Input.GetMouseButtonUp(0))
         {
-            isDrag = false;
-            Destroy(target);
-
+            isCheck = false;
+            target = null;
+            if(range !=null )
+                range.movementType = ScrollRect.MovementType.Elastic;
+            if (isDrag)
+            {
+                isDrag = false;
+                Destroy(moveTarget.gameObject);
+                moveTarget = null;
+            }
         }
 
         if (isDrag)
         {
-            if (target == null)
+            if (moveTarget == null)
             {
-                GameObject go = GetOverUI(canvas);
-                if (go == null) {
-                    isDrag = false;
-                    return;
-                }
-                target = Instantiate(go);
-                target.transform.SetParent(transform);
-                target.GetComponent<RectTransform>().sizeDelta = go.GetComponent<RectTransform>().sizeDelta;
+                if (target == null) { isDrag = false; return; }
+                moveTarget = Instantiate(target);
+                moveTarget.transform.SetParent(transform);
+                moveTarget.GetComponent<RectTransform>().sizeDelta = target.GetComponent<RectTransform>().sizeDelta;
+                //moveTarget.GetComponent<RectTransform>().pivot = new Vector2(0.5f, 0.5f);
                 //target.transform.position = go.transform.position;
-                target.GetComponent<RectTransform>().anchoredPosition = Input.mousePosition;
+                //moveTarget.GetComponent<RectTransform>().position = Vector3.zero;
+                moveTarget.GetComponent<RectTransform>().anchoredPosition = Input.mousePosition;
+                //Debug.Log(Input.mousePosition+"  "+mo)
             }
             //target.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            target.GetComponent<RectTransform>().anchoredPosition = Input.mousePosition;
+            if(moveTarget != null)
+            moveTarget.GetComponent<RectTransform>().anchoredPosition = Input.mousePosition;
         }
 
     }
-    public GameObject GetOverUI(GameObject canvas)
+    public List<RaycastResult> GetOverUI(GameObject canvas)
     {
         PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
         pointerEventData.position = Input.mousePosition;
@@ -63,41 +111,10 @@ public class DragOperation : MonoBehaviour
         gr.Raycast(pointerEventData, results);
         if (results.Count != 0)
         {
-            for (int i = 0; i < results.Count; i++)
-            {
-                if (results[i].gameObject.tag == "material")
-                    return results[i].gameObject;
-            }
-
+            return results;
         }
 
         return null;
-    }
-
-    private void RayMove()
-    {
-        if (!isDrag) return;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        if (isDrag)
-        {
-
-            if (Physics.Raycast(ray, out hit))
-            {
-                
-                if (target == null)
-                {
-                    //target = Instantiate(prefab_mat);
-                    target.transform.SetParent(transform);
-                    target.transform.position = transform.position;
-                }
-                Vector3 offset = Input.mousePosition;
-                target.transform.position = new Vector3(hit.point.x, hit.point.y, hit.transform.position.z);
-                Debug.DrawLine(ray.origin, hit.point);
-            }
-        }
-
-
     }
 
 }
