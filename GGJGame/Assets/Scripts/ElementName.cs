@@ -8,16 +8,15 @@ public class ElementName
     //[yl] Base Element Name
     public const string Man = "Man";                                    //男性
     public const string Woman = "Woman";                                //女性
-    public const string Health = "Health";                              //健康
     public const string Ill = "Ill";                                    //生病
     public const string Time = "Time";                                  //单位时间
     public const string Money = "Money";                                //单位金钱
 
     //[yl] Combine Element Name
-    public const string IllMan = Ill + Man;                             //生病男性
-    public const string IllWoman = Ill + Woman;                         //生病女性
-    public const string Boy = Man + Woman;                              //男孩
-    public const string Girl = Man + Woman;                             //女孩
+    public const string IllMan = "IllMan";                              //生病男性
+    public const string IllWoman = "IllWoman";                          //生病女性
+    public const string Boy = "Boy";                                    //男孩
+    public const string Girl = "Girl";                                  //女孩
 
     //[yl] Has Result Element Name
 
@@ -50,7 +49,6 @@ public class ElementNameMgr
         elementsDict = new Dictionary<string, string[]>();
         elementsDict.Add("Man", new string[] { "男性", ElementName.Man });
         elementsDict.Add("Woman", new string[] { "女性", ElementName.Woman });
-        elementsDict.Add("Health", new string[] { "健康", ElementName.Health });
         elementsDict.Add("Ill", new string[] { "生病", ElementName.Ill });
         elementsDict.Add("Time", new string[] { "单位时间", ElementName.Time });
         elementsDict.Add("Money", new string[] { "单位金钱", ElementName.Money });
@@ -65,6 +63,13 @@ public class ElementNameMgr
     public void NetDictInit()
     {
         netElementRelationDict = new Dictionary<string[], string[]>();
+        netElementRelationDict.Add(
+            new string[] { ElementName.Man, ElementName.Woman, ElementName.Time },
+            new string[] { ElementName.Boy, ElementName.Girl});
+        netElementRelationDict.Add(
+            new string[] { ElementName.Man, ElementName.Ill },
+            new string[] { ElementName.IllMan });
+
     }
 }
 
