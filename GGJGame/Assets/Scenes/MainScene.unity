@@ -1401,7 +1401,7 @@ MonoBehaviour:
   root_right: {fileID: 1717537592}
   prefab_mat: {fileID: 994443614091416209, guid: be016a26af5d16145878e84268e53319,
     type: 3}
-  matList:
+  basicMatList:
   - Name: "\u7537\u4EBA"
     IsLeft: 1
     Label: Man

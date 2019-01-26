@@ -23,14 +23,16 @@ public class GenerateMaterials : MonoBehaviour
     public Transform root_left;
     public Transform root_right;
     public GameObject prefab_mat;
-
-    public List<MaterialData> matList = new List<MaterialData>();
+    //基本素材列表
+    public List<MaterialData> basicMatList = new List<MaterialData>();
 
     public Button btn_compose;
     public Transform root_drag;
 
     public GameObject flash;
-
+    //合成素材列表
+    private Dictionary<string, GameObject> newMatDic = new Dictionary<string, GameObject>();
+    
     void Start()
     {
         //读表生成每关所需素材
@@ -46,13 +48,13 @@ public class GenerateMaterials : MonoBehaviour
         if (prefab_mat == null)
             return;
 
-        for (int i = 0; i < matList.Count; i++)
+        for (int i = 0; i < basicMatList.Count; i++)
         {
-            GenerateMat(matList[i]);
+            GenerateMat(basicMatList[i]);
         }
     }
 
-    private void GenerateMat(MaterialData data)
+    private GameObject GenerateMat(MaterialData data)
     {
         GameObject mat = Instantiate(prefab_mat);
         mat.GetComponentInChildren<Text>().text = data.Name;
@@ -67,6 +69,7 @@ public class GenerateMaterials : MonoBehaviour
         {
             mat.transform.SetParent(root_right);
         }
+        return mat;
     }
 
     private void OnBtnComposeClick()
@@ -97,12 +100,24 @@ public class GenerateMaterials : MonoBehaviour
             flash.SetActive(false);
         }
 
-        //合成新素材
+        //合成新素材(不重复)
         string newMat = CombineController.DoCombineByNetRelation(str_arr);
         if (!string.IsNullOrEmpty(newMat))
         {
-            string name = ElementNameMgr.getInstance().getElementCNName(newMat);
-            GenerateMat(new MaterialData(name, false, newMat));
+            if (newMatDic.ContainsKey(newMat))
+            {
+                //重复的提示效果
+                var mat = newMatDic[newMat];
+                mat.SetActive(false);
+                yield return new WaitForSeconds(0.2f);
+                mat.SetActive(true);
+            }
+            else
+            {
+                string name = ElementNameMgr.getInstance().getElementCNName(newMat);
+                var mat = GenerateMat(new MaterialData(name, false, newMat));
+                newMatDic.Add(newMat, mat);
+            }
         }
     }
 }

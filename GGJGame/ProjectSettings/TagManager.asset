@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - material
+  - range
   layers:
   - Default
   - TransparentFX
@@ -11,7 +13,6 @@ TagManager:
   - 
   - Water
   - UI
-  - 
   - 
   - 
   - 
