@@ -32,6 +32,8 @@ public class ElementNameMgr
     private ElementNameMgr()
     {
         Init();
+        NetDictInit();
+
     }
 
     public static ElementNameMgr getInstance()
@@ -41,21 +43,21 @@ public class ElementNameMgr
         return instatnce;
     }
 
-    public Dictionary<string, string[]> elementsDict;
-    public Dictionary<string[], string[]> netElementRelationDict;   //网状结构元素关系字典
+    private Dictionary<string, string> elementsCNDict;                  //中英文对照字典
+    private Dictionary<string[], string[]> netElementRelationDict;      //网状结构元素关系字典
 
     public void Init()
     {
-        elementsDict = new Dictionary<string, string[]>();
-        elementsDict.Add("Man", new string[] { "男性", ElementName.Man });
-        elementsDict.Add("Woman", new string[] { "女性", ElementName.Woman });
-        elementsDict.Add("Ill", new string[] { "生病", ElementName.Ill });
-        elementsDict.Add("Time", new string[] { "单位时间", ElementName.Time });
-        elementsDict.Add("Money", new string[] { "单位金钱", ElementName.Money });
-        elementsDict.Add("IllMan", new string[] { "生病男性", ElementName.IllMan });
-        elementsDict.Add("IllWoman", new string[] { "生病女性", ElementName.IllWoman });
-        elementsDict.Add("Boy", new string[] { "男孩", ElementName.Boy });
-        elementsDict.Add("Girl", new string[] { "女孩", ElementName.Girl });
+        elementsCNDict = new Dictionary<string, string>();
+        elementsCNDict.Add(ElementName.Man, "男性");
+        elementsCNDict.Add(ElementName.Woman, "女性");
+        elementsCNDict.Add(ElementName.Ill, "生病");
+        elementsCNDict.Add(ElementName.Time, "单位时间");
+        elementsCNDict.Add(ElementName.Money, "单位金钱");
+        elementsCNDict.Add(ElementName.IllMan, "生病男性");
+        elementsCNDict.Add(ElementName.IllWoman, "生病女性");
+        elementsCNDict.Add(ElementName.Boy, "男孩");
+        elementsCNDict.Add(ElementName.Girl, "女孩");
 
     }
 
@@ -69,7 +71,22 @@ public class ElementNameMgr
         netElementRelationDict.Add(
             new string[] { ElementName.Man, ElementName.Ill },
             new string[] { ElementName.IllMan });
+        netElementRelationDict.Add(
+            new string[] { ElementName.Woman, ElementName.Ill },
+            new string[] { ElementName.IllWoman });
+    }
 
+    public string getElementCNName(string enName)
+    {
+        if (elementsCNDict.ContainsKey(enName))
+            return elementsCNDict[enName];
+        Debug.LogError("[yl] No such key:" + enName + " In elementsCNDict");
+        return "";
+    }
+
+    public Dictionary<string[], string[]> getNetElementRelationDict()
+    {
+        return netElementRelationDict;
     }
 }
 

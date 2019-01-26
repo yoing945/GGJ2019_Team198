@@ -98,15 +98,11 @@ public class GenerateMaterials : MonoBehaviour
         }
 
         //合成新素材
-        string newMat = CombineController.DoCombine(str_arr);
+        string newMat = CombineController.DoCombineByNetRelation(str_arr);
         if (!string.IsNullOrEmpty(newMat))
         {
-            var dic = ElementNameMgr.getInstance().elementsDict;
-            if (dic.ContainsKey(newMat))
-            {
-                string name = dic[newMat][0];
-                GenerateMat(new MaterialData(name, false, newMat));
-            }
+            string name = ElementNameMgr.getInstance().getElementCNName(newMat);
+            GenerateMat(new MaterialData(name, false, newMat));
         }
     }
 }
