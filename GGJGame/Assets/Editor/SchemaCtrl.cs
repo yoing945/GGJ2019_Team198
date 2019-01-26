@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
 public class SchemaCtrl 
@@ -13,5 +11,13 @@ public class SchemaCtrl
         AssetDatabase.SaveAssets();
         return asset;
     }
-  
+
+    [MenuItem("Assets/CreateEditor/SchemaBasicMat")]
+    public static ResMaterial CreateBasicMatSchema()
+    {
+        ResMaterial asset = ScriptableObject.CreateInstance<ResMaterial>();
+        AssetDatabase.CreateAsset(asset, "Assets/Resources/BasicMatSchema.asset");
+        AssetDatabase.SaveAssets();
+        return asset;
+    }
 }

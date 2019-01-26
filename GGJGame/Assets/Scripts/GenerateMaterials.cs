@@ -24,7 +24,7 @@ public class GenerateMaterials : MonoBehaviour
     public Transform root_right;
     public GameObject prefab_mat;
     //基本素材列表
-    public List<MaterialData> basicMatList = new List<MaterialData>();
+    private List<MaterialData> basicMatList = new List<MaterialData>();
 
     public Button btn_compose;
     public Transform root_drag;
@@ -40,7 +40,6 @@ public class GenerateMaterials : MonoBehaviour
 
     void Start()
     {
-        //读表生成每关所需素材
         LoadRes();
         GenerateMats();
         if (btn_compose != null)
@@ -51,10 +50,13 @@ public class GenerateMaterials : MonoBehaviour
 
     private void LoadRes()
     {
-        var res = Resources.Load("PosSchema") as Res;
-        if (res != null)
+        var resPos = Resources.Load("PosSchema") as Res;
+        if (resPos != null)
+            photo_char_pos = resPos.photoPos;
+        var resMaterial = Resources.Load("BasicMatSchema") as ResMaterial;
+        if (resMaterial != null)
         {
-            photo_char_pos = res.photoPos;
+            basicMatList = resMaterial.basicMatData;
         }
     }
 
