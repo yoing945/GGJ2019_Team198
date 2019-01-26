@@ -32,6 +32,11 @@ public class GenerateMaterials : MonoBehaviour
     public GameObject flash;
     //合成素材列表
     private Dictionary<string, GameObject> newMatDic = new Dictionary<string, GameObject>();
+
+    public Image photo_bg;
+    public Transform root_char;
+    public GameObject prefab_char;
+    public List<Vector2> photo_char_pos = new List<Vector2>();
     
     void Start()
     {
@@ -104,6 +109,25 @@ public class GenerateMaterials : MonoBehaviour
         string newMat = CombineController.DoCombineByNetRelation(str_arr);
         if (!string.IsNullOrEmpty(newMat))
         {
+            //判断是照片还是素材
+            if (CombineController.isInResultList(newMat))
+            {
+                //显示
+                var photoSprites = CombineController.getResultSprites(str_arr);
+                if (photoSprites.Count > 0 && photo_bg != null)
+                    photo_bg.sprite = photoSprites[0];
+                if (photoSprites.Count > 1 && prefab_char != null)
+                {
+                    //每次生成前打乱固定位置
+                    MessPosOrder();
+                    for (int i = 1; i < photoSprites.Count; i++)
+                    {
+                        GenerateChar(photoSprites[i], i);
+                    }
+                }
+                yield break;
+            }
+
             if (newMatDic.ContainsKey(newMat))
             {
                 //重复的提示效果
@@ -118,6 +142,27 @@ public class GenerateMaterials : MonoBehaviour
                 var mat = GenerateMat(new MaterialData(name, false, newMat));
                 newMatDic.Add(newMat, mat);
             }
+        }
+    }
+
+    private GameObject GenerateChar(Sprite spr, int index)
+    {
+        GameObject character = Instantiate(prefab_char);
+        character.GetComponent<Image>().sprite = spr;
+        character.transform.SetParent(root_char);
+        character.GetComponent<RectTransform>().anchoredPosition = photo_char_pos[index];
+        return character;
+    }
+
+    private void MessPosOrder()
+    {
+        int sum = photo_char_pos.Count;
+        for(int i = 0; i < sum; i++)
+        {
+            int rand = Random.Range(0, sum);
+            var item = photo_char_pos[rand];
+            photo_char_pos.RemoveAt(rand);
+            photo_char_pos.Add(item);
         }
     }
 }
