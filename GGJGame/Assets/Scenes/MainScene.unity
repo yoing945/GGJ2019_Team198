@@ -1423,6 +1423,11 @@ MonoBehaviour:
   btn_compose: {fileID: 589842454}
   root_drag: {fileID: 1523525646}
   flash: {fileID: 196088139}
+  photo_bg: {fileID: 1707184803}
+  root_char: {fileID: 2106609894}
+  prefab_char: {fileID: 8213631776468899867, guid: a75d1f8bec92f5b46912f89820b33ae3,
+    type: 3}
+  photo_char_pos: []
 --- !u!1 &1314365005
 GameObject:
   m_ObjectHideFlags: 0
@@ -1789,6 +1794,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1707184803 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1970560434414824858, guid: 96b4e09e8cb0bad4d8183f667f5a7dae,
+    type: 3}
+  m_PrefabInstance: {fileID: 1019261879}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1717537591
 GameObject:
   m_ObjectHideFlags: 0
@@ -1930,3 +1947,9 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!224 &2106609894 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1970560433278757785, guid: 96b4e09e8cb0bad4d8183f667f5a7dae,
+    type: 3}
+  m_PrefabInstance: {fileID: 1019261879}
+  m_PrefabAsset: {fileID: 0}
