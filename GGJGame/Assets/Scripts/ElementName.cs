@@ -35,6 +35,7 @@ public class ElementNameMgr
         InitElementsCNDict();
         InitNetDict();
         InitResultElementDict();
+        InitElementsNumLimitDict();
     }
 
     public static ElementNameMgr getInstance()
