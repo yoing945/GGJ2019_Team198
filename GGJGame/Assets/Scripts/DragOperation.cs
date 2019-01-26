@@ -89,7 +89,6 @@ public class DragOperation : MonoBehaviour
                 isDrag = false;               
                 Vector2 position;
                 RectTransformUtility.ScreenPointToLocalPointInRectangle(GetComponent<RectTransform>(), Input.mousePosition, null, out position);
-                Debug.Log(position);
                 if (!(position.x <= RightX && position.x >= LeftX && position.y <= UpY&& position.y >= DownY))
                   Destroy(moveTarget.gameObject);
                 else
