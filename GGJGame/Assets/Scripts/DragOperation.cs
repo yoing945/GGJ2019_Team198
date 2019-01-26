@@ -23,6 +23,7 @@ public class DragOperation : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+
             isDrag = true;
 
         }
@@ -35,15 +36,18 @@ public class DragOperation : MonoBehaviour
 
         if (isDrag)
         {
-
             if (target == null)
             {
                 GameObject go = GetOverUI(canvas);
+                if (go == null) {
+                    isDrag = false;
+                    return;
+                }
                 target = Instantiate(go);
                 target.transform.SetParent(transform);
                 target.GetComponent<RectTransform>().sizeDelta = go.GetComponent<RectTransform>().sizeDelta;
-                target.transform.position = go.transform.position;
-
+                //target.transform.position = go.transform.position;
+                target.GetComponent<RectTransform>().anchoredPosition = Input.mousePosition;
             }
             //target.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             target.GetComponent<RectTransform>().anchoredPosition = Input.mousePosition;
@@ -59,12 +63,12 @@ public class DragOperation : MonoBehaviour
         gr.Raycast(pointerEventData, results);
         if (results.Count != 0)
         {
-            for(int i = 0; i < results.Count; i++)
+            for (int i = 0; i < results.Count; i++)
             {
-                if(results[i].gameObject.tag == "material")
+                if (results[i].gameObject.tag == "material")
                     return results[i].gameObject;
             }
-            
+
         }
 
         return null;
