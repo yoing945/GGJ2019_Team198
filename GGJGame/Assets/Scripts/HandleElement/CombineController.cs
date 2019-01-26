@@ -5,12 +5,21 @@ using UnityEngine;
 //[yl] 元素组合控制器
 public class CombineController
 {
+
     //根据元素间的网状关系输出
     public static string DoCombineByNetRelation(string[] inputElements)
     {
-        var NERD = ElementNameMgr.getInstance().getNetElementRelationDict();
+        var elementNameMgr = ElementNameMgr.getInstance();
+        var NERD = elementNameMgr.getNetElementRelationDict();
+        
         foreach(var reasons in NERD.Keys)
         {
+            //若元素没有个数限制,那么reasons和inputElements必须完全对应
+            if (!elementNameMgr.hasNumLimit(inputElements))
+            {
+                if (inputElements.Length != reasons.Length)
+                    continue;
+            }
             var allInReasons = true;
             for(int i = 0; i < inputElements.Length; ++i)
             {
