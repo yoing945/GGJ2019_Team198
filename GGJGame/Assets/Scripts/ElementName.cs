@@ -53,7 +53,7 @@ public class ElementName
     public const string Qiongbi = "Qiongbi";
     public const string Yanglaoyuan = "Yanglaoyuan";
     public const string Yiyuan = "Yiyuan";
-                
+    public const string Dingke = "Dingke";
 }
 
 
@@ -134,6 +134,7 @@ public class ElementNameMgr
         elementsCNDict.Add(ElementName.Qiongbi, "穷逼的家");
         elementsCNDict.Add(ElementName.Yanglaoyuan, "养老院");
         elementsCNDict.Add(ElementName.Yiyuan, "医院全家福");
+        elementsCNDict.Add(ElementName.Dingke, "丁克家庭");
 
     }
 
@@ -332,6 +333,14 @@ public class ElementNameMgr
             new string[]{ ElementName.RichWoman},
            },
            new string[] { ElementName.Wanglaowu });
+
+        netElementRelationDict.Add(
+           new string[][]{
+                new string[]{ ElementName.Woman,ElementName.Man},
+                new string[]{ ElementName.RichWoman,ElementName.Man},
+                new string[]{ ElementName.Woman,ElementName.RichMan},
+           },
+           new string[] { ElementName.Dingke });
     }
 
     private void InitResultElementDict()
