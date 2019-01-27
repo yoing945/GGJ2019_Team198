@@ -6,6 +6,7 @@ public class GameMgr : MonoBehaviour
 {
     public Transform startGame;
     public Transform mainPanel;
+    public GameObject rightScene;
 
     private void Awake()
     {
@@ -33,8 +34,9 @@ public class GameMgr : MonoBehaviour
 
     public void NextGame()
     {
-        //清空Box,初始化
-        
+        //清空Box,初始化,隐藏
+        rightScene.SetActive(true);
+                
     }
 
 }

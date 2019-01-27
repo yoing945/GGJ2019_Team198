@@ -8,6 +8,7 @@ public class Title : MonoBehaviour
     public Text Quest;
     public Text Answer;
     public GameObject Block;
+    public GameObject RightScene;
     // Start is called before the first frame update
     public void SetQuest(string Content)
     {
@@ -15,16 +16,20 @@ public class Title : MonoBehaviour
         Block.SetActive(false);
         Quest.color = new Color(Quest.color.r, Quest.color.g, Quest.color.b, 1.0f);
     }
-    public void SetAnswer(string Content)
+    public IEnumerator SetAnswer(string Content)
     {
         if(Quest.text == Content)
         {
             Block.SetActive(false);
             //正确答案的效果在这里
+            yield return new WaitForSeconds(3);
+            RightScene.SetActive(true);
         }
         else
         {
             Incorrect();
+            yield return new WaitForSeconds(3);
+            //TODO: 清空错误合照
         }
     }
     private void Incorrect()
@@ -33,4 +38,6 @@ public class Title : MonoBehaviour
         Answer.gameObject.SetActive(true);
         Block.SetActive(true);
     }
+
+
 }
