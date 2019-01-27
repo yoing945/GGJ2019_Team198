@@ -251,13 +251,15 @@ public class ElementNameMgr
         //combine RichOldMan
         netElementRelationDict.Add(
             new string[][]{
-                new string[]{ ElementName.OldMan, ElementName.Money } },
+                new string[]{ ElementName.OldMan, ElementName.Money } ,
+            new string[] { ElementName.Man, ElementName.Money, ElementName.Time } },
             new string[] { ElementName.RichOldMan });
         //combine RichOldWoman
         netElementRelationDict.Add(
             new string[][]{
-                new string[]{ ElementName.OldWoman, ElementName.Money } },
-            new string[] { ElementName.RichOldWoman });
+                new string[]{ ElementName.OldWoman, ElementName.Money } ,
+                new string[] { ElementName.Woman, ElementName.Money, ElementName.Time } },
+                new string[] { ElementName.RichOldWoman });
         
 
         //combine Sankouzhijia
@@ -391,11 +393,6 @@ public class ElementNameMgr
            },
            new string[] { ElementName.Gugualaoren });
 
-        netElementRelationDict.Add(
-           new string[][] {
-                new string[] { ElementName.Woman,ElementName.Money,ElementName.Time}
-           }, 
-           new string[] { ElementName.RichWoman });
 
     }
 
@@ -545,23 +542,31 @@ public class SpriteResMgr
         var sprites = new List<Sprite>();
         foreach(var s in backGrounds)
         {
+            var canStore = true;
             foreach(var keyword in backGroundKeyWords)
             {
-                if (s != getKeyWordBGSprite(keyword))
-                    sprites.Add(s);
+                if (s.name.Contains(keyword))
+                {
+                    canStore = false;
+                    break;
+                }
+            }
+            if(canStore)
+            {
+                sprites.Add(s);
             }
         }
         return sprites.ToArray();
     }
 
-    public Sprite getBGSprite(string[] elements)
+    public Sprite getBGSprite(Sprite[] elementsSprites)
     {
         var finalSprites = new List<Sprite>();
         foreach (var keyword in backGroundKeyWords)
         {
-            foreach (var elementName in elements)
+            foreach (var elementSprite in elementsSprites)
             {
-                if (elementName.Contains(keyword))
+                if (elementSprite.name.Contains(keyword))
                 {
                     var s = getKeyWordBGSprite(keyword);
                     if (!finalSprites.Contains(s))
@@ -578,7 +583,7 @@ public class SpriteResMgr
         int index = Random.Range(0, finalSprites.Count);
         var bg = finalSprites[index];
         //Debug---------------------
-        foreach(var element in elements)
+        foreach(var element in elementsSprites)
             Debug.Log("BG:element_" + element);
         Debug.Log("BGname_" + bg.name);
         //--------------------------

@@ -113,12 +113,11 @@ public class GenerateMaterials : MonoBehaviour
         if (flash != null)
         {
             flash.SetActive(true);
-            StartCoroutine(DelaySetFalse(flash));
+            StartCoroutine(DelaySetActive(flash));
         }
 
         //合成新素材(不重复)
         string newMat = CombineController.DoCombineByNetRelation(str_arr);
-        Debug.Log("Input Elements:" + str_arr + " \n Result:" + newMat);
         if (!string.IsNullOrEmpty(newMat))
         {
             //每次合成拍出照片
@@ -148,15 +147,16 @@ public class GenerateMaterials : MonoBehaviour
             }
 
             string name = ElementNameMgr.getInstance().getElementCNName(newMat);
+            Debug.Log("Input Elements:" + str_arr + " \n Result:" + newMat);
             //非照片生成素材
             if (!CombineController.isInResultList(newMat))
             {
                 if (newMatDic.ContainsKey(newMat))
                 {
                     //重复的提示效果
-                    var mat = newMatDic[newMat];
-                    mat.SetActive(false);
-                    StartCoroutine(DelaySetFalse(mat));
+                    //var mat = newMatDic[newMat];
+                    //mat.SetActive(false);
+                    //StartCoroutine(DelaySetActive(mat));
                 }
                 else
                 {
@@ -245,9 +245,9 @@ public class GenerateMaterials : MonoBehaviour
         }
     }
 
-    private IEnumerator DelaySetFalse(GameObject go)
+    private IEnumerator DelaySetActive(GameObject go)
     {
         yield return new WaitForSeconds(0.2f);
-        go.SetActive(false);
+        go.SetActive(!go.activeSelf);
     }
 }
