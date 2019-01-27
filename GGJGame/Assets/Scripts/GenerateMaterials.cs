@@ -86,7 +86,10 @@ public class GenerateMaterials : MonoBehaviour
 
     private void OnBtnComposeClick()
     {
+        AudioSource audio = btn_compose.GetComponent<AudioSource>();
+        audio.Play();
         StartCoroutine(Compose());
+
     }
 
     private IEnumerator Compose()
