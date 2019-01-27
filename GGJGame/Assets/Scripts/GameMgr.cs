@@ -12,14 +12,6 @@ public class GameMgr : MonoBehaviour
     {
         startGame.gameObject.SetActive(true);
     }
-    void Start()
-    {
-
-    }
-
-    void Update()
-    {
-    }
 
     public void OpenMainPanel()
     {
@@ -29,7 +21,11 @@ public class GameMgr : MonoBehaviour
 
     public void QuitGame()
     {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
         Application.Quit();
+#endif
     }
 
     public void NextGame()
@@ -41,6 +37,6 @@ public class GameMgr : MonoBehaviour
             if (gm != null)
                 gm.ClearPhoto();
         }
-        rightScene.SetActive(true);
+        rightScene.SetActive(false);
     }
 }
