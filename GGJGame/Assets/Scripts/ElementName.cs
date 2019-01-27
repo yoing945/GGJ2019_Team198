@@ -384,6 +384,13 @@ public class ElementNameMgr
            },
            new string[] { ElementName.Gay });
 
+        netElementRelationDict.Add(
+           new string[][]{
+                new string[]{ ElementName.OldMan},
+                new string[]{ ElementName.OldWoman}
+           },
+           new string[] { ElementName.Gugualaoren });
+
     }
 
     private void InitResultElementDict()
