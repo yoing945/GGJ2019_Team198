@@ -127,7 +127,7 @@ public class ElementNameMgr
         elementsCNDict.Add(ElementName.Danqinjiating, "单亲家庭");
         elementsCNDict.Add(ElementName.Gugualaoren, "孤寡老人的家");
         elementsCNDict.Add(ElementName.Tuhao, "土豪的家");
-        elementsCNDict.Add(ElementName.Wanglaowu, "黄金王老五");
+        elementsCNDict.Add(ElementName.Wanglaowu, "钻石王老五");
         elementsCNDict.Add(ElementName.Liushou, "留守的家");
         elementsCNDict.Add(ElementName.Hougong, "后宫");
         elementsCNDict.Add(ElementName.Fupo, "富婆的家");
@@ -192,7 +192,16 @@ public class ElementNameMgr
         //combine Boy or Girl
         netElementRelationDict.Add(
             new string[][] {
-                new string[] { ElementName.Man, ElementName.Woman, ElementName.Time } },
+                new string[] { ElementName.Man, ElementName.Woman, ElementName.Time },
+                new string[] { ElementName.RichMan, ElementName.RichWoman, ElementName.Time },
+                new string[] { ElementName.RichMan, ElementName.Woman, ElementName.Time },
+                new string[] { ElementName.Man, ElementName.RichWoman, ElementName.Time },
+                new string[] { ElementName.PoorMan, ElementName.Woman, ElementName.Time },
+                new string[] { ElementName.PoorMan, ElementName.PoorWoman, ElementName.Time },
+                new string[] { ElementName.Man, ElementName.PoorWoman, ElementName.Time },
+                new string[] { ElementName.RichMan, ElementName.PoorWoman, ElementName.Time },
+                new string[] { ElementName.PoorMan, ElementName.RichWoman, ElementName.Time },
+            },
             new string[] { ElementName.Boy, ElementName.Girl});
 
         //combine OldMan
@@ -266,7 +275,24 @@ public class ElementNameMgr
         netElementRelationDict.Add(
             new string[][]{
                 new string[]{ ElementName.Woman, ElementName.Man, ElementName.Girl },
-                new string[]{ ElementName.Woman, ElementName.Man, ElementName.Boy }},
+                new string[]{ ElementName.Woman, ElementName.Man, ElementName.Boy },
+                new string[] { ElementName.RichMan, ElementName.RichWoman, ElementName.Girl },
+                new string[] { ElementName.RichMan, ElementName.Woman, ElementName.Girl },
+                new string[] { ElementName.Man, ElementName.RichWoman, ElementName.Girl },
+                new string[] { ElementName.PoorMan, ElementName.Woman, ElementName.Girl },
+                new string[] { ElementName.PoorMan, ElementName.PoorWoman, ElementName.Girl },
+                new string[] { ElementName.Man, ElementName.PoorWoman, ElementName.Girl },
+                new string[] { ElementName.RichMan, ElementName.PoorWoman, ElementName.Girl },
+                new string[] { ElementName.PoorMan, ElementName.RichWoman, ElementName.Girl },
+                new string[] { ElementName.RichMan, ElementName.RichWoman, ElementName.Boy },
+                new string[] { ElementName.RichMan, ElementName.Woman, ElementName.Boy },
+                new string[] { ElementName.Man, ElementName.RichWoman, ElementName.Boy },
+                new string[] { ElementName.PoorMan, ElementName.Woman, ElementName.Boy },
+                new string[] { ElementName.PoorMan, ElementName.PoorWoman, ElementName.Boy },
+                new string[] { ElementName.Man, ElementName.PoorWoman, ElementName.Boy },
+                new string[] { ElementName.RichMan, ElementName.PoorWoman, ElementName.Boy },
+                new string[] { ElementName.PoorMan, ElementName.RichWoman, ElementName.Boy },
+            },
             new string[] { ElementName.Sankouzhijia });
 
         netElementRelationDict.Add(
@@ -365,9 +391,7 @@ public class ElementNameMgr
 
         netElementRelationDict.Add(
            new string[][]{
-                new string[]{ ElementName.RichWoman},
-            new string[]{ ElementName.RichWoman},
-           },
+                new string[]{ ElementName.RichMan},},
            new string[] { ElementName.Wanglaowu });
 
         netElementRelationDict.Add(
@@ -419,6 +443,8 @@ public class ElementNameMgr
         elementsHasResult.Add(ElementName.Dingke);
         elementsHasResult.Add(ElementName.Gay);
         elementsHasResult.Add(ElementName.Les);
+        elementsHasResult.Add(ElementName.Danshen);
+
     }
 
     private void InitElementsNumLimitDict()
@@ -429,6 +455,7 @@ public class ElementNameMgr
         elementsNumLimitDict.Add(ElementName.OldMan, 3);
         elementsNumLimitDict.Add(ElementName.OldWoman, 3);
         elementsNumLimitDict.Add(ElementName.Man, 3);
+        elementsNumLimitDict.Add(ElementName.Woman, 2);
         elementsNumLimitDict.Add(ElementName.Girl, 3);
         elementsNumLimitDict.Add(ElementName.Boy, 3);
     }
@@ -599,6 +626,10 @@ public class SpriteResMgr
         var finalSprites = new List<Sprite>();
         foreach(var e in elements)
         {
+            // [yl] super hard code
+            if (e == ElementName.Poor)
+                continue;
+
             var eSprites = new List<Sprite>();
             foreach(var s in chars)
             {

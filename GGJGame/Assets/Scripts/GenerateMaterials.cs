@@ -118,31 +118,39 @@ public class GenerateMaterials : MonoBehaviour
 
         //合成新素材(不重复)
         string newMat = CombineController.DoCombineByNetRelation(str_arr);
+        //[yl] super hard code
         if (!string.IsNullOrEmpty(newMat))
         {
-            //每次合成拍出照片
-            var photoSprites = CombineController.getResultSprites(str_arr);
-            if (photoSprites != null)
+            if(newMat == "Poor")
             {
                 ClearPhoto();
-                if (photoSprites.Count > 0 && photo_bg != null)
-                    photo_bg.sprite = photoSprites[0];
-                if (photoSprites.Count > 1 && prefab_char != null)
+            }
+            else
+            {
+                //每次合成拍出照片
+                var photoSprites = CombineController.getResultSprites(str_arr);
+                if (photoSprites != null)
                 {
-                    //每次生成前打乱固定位置
-                    MessPosOrder();
-
-                    if (photoSprites.Count - 1 <= photo_char_pos.Count)
+                    ClearPhoto();
+                    if (photoSprites.Count > 0 && photo_bg != null)
+                        photo_bg.sprite = photoSprites[0];
+                    if (photoSprites.Count > 1 && prefab_char != null)
                     {
-                        for (int i = 1; i < photoSprites.Count; i++)
+                        //每次生成前打乱固定位置
+                        MessPosOrder();
+
+                        if (photoSprites.Count - 1 <= photo_char_pos.Count)
                         {
-                            tempOrderSprList.Add(photoSprites[i]);
-                            tempOrderVec2List.Add(photo_char_pos[i - 1]);
+                            for (int i = 1; i < photoSprites.Count; i++)
+                            {
+                                tempOrderSprList.Add(photoSprites[i]);
+                                tempOrderVec2List.Add(photo_char_pos[i - 1]);
+                            }
+                            GetGenerateOrder();
                         }
-                        GetGenerateOrder();
+                        for (int i = 0; i < tempOrderVec2List.Count; i++)
+                            GenerateChar(tempOrderSprList[i], tempOrderVec2List[i]);
                     }
-                    for (int i = 0; i < tempOrderVec2List.Count; i++)
-                        GenerateChar(tempOrderSprList[i], tempOrderVec2List[i]);
                 }
             }
 
