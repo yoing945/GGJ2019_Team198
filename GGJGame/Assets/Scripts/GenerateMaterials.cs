@@ -41,6 +41,8 @@ public class GenerateMaterials : MonoBehaviour
     private List<Sprite> tempOrderSprList = new List<Sprite>();
     private List<Vector2> tempOrderVec2List = new List<Vector2>();
 
+    public Title title;
+
     void Start()
     {
         LoadRes();
@@ -138,6 +140,7 @@ public class GenerateMaterials : MonoBehaviour
                 }
             }
 
+            //string 
             //非照片生成素材
             if (!CombineController.isInResultList(newMat))
             {
@@ -154,6 +157,13 @@ public class GenerateMaterials : MonoBehaviour
                     string name = ElementNameMgr.getInstance().getElementCNName(newMat);
                     var mat = GenerateMat(new MaterialData(name, false, newMat));
                     newMatDic.Add(newMat, mat);
+                }
+            }
+            else
+            {
+                if(title != null)
+                {
+                    //StartCoroutine(title.SetAnswer());
                 }
             }
         }
