@@ -543,19 +543,29 @@ public class SpriteResMgr
 
     public Sprite getBGSprite(string[] elements)
     {
+        var finalSprites = new List<Sprite>();
         foreach (var keyword in backGroundKeyWords)
         {
             foreach (var elementName in elements)
             {
                 if (elementName.Contains(keyword))
                 {
-                    return getKeyWordBGSprite(keyword);
+                    var s = getKeyWordBGSprite(keyword);
+                    if (!finalSprites.Contains(s))
+                    {
+                        finalSprites.Add(s);
+                    }
                 }
             }
         }
-        var normalBGs = getNormalBGSprites();
-        int index = Random.Range(0, normalBGs.Length);
-        return normalBGs[index];
+        if (finalSprites.Count == 0)
+        {
+            finalSprites.AddRange(getNormalBGSprites());
+        }
+        int index = Random.Range(0, finalSprites.Count);
+        var bg = finalSprites[index];
+        Debug.Log("BG: elements_" + elements + " bg:" + bg.name);
+        return bg;
     }
 
     public Sprite[] getElementsSprites(string[] elements)
