@@ -25,7 +25,7 @@ public class ElementName
     public const string RichMan = "RichMan";
     public const string RichWoman = "RichWoman";
     public const string RichOldMan = "RichOldMan";
-    public const string RichOldWoman = "RichOldMan";
+    public const string RichOldWoman = "RichOldWoman";
 
     public const string PoorBoy = "PoorBoy";
     public const string PoorGirl = "PoorGirl";
