@@ -19,6 +19,7 @@ public class Title : MonoBehaviour
 
     public void SetAnswer(string Content)
     {
+        Debug.Log(Content);
         if (Quest.text == Content)
         {
             ResetAnswer();
