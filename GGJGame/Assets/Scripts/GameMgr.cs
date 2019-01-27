@@ -35,8 +35,12 @@ public class GameMgr : MonoBehaviour
     public void NextGame()
     {
         //清空Box,初始化,隐藏
+        if (mainPanel != null)
+        {
+            var gm = mainPanel.GetComponent<GenerateMaterials>();
+            if (gm != null)
+                gm.ClearPhoto();
+        }
         rightScene.SetActive(true);
-                
     }
-
 }

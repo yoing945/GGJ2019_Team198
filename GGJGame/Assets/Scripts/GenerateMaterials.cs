@@ -140,7 +140,7 @@ public class GenerateMaterials : MonoBehaviour
                 }
             }
 
-            //string 
+            string name = ElementNameMgr.getInstance().getElementCNName(newMat);
             //非照片生成素材
             if (!CombineController.isInResultList(newMat))
             {
@@ -154,7 +154,6 @@ public class GenerateMaterials : MonoBehaviour
                 }
                 else
                 {
-                    string name = ElementNameMgr.getInstance().getElementCNName(newMat);
                     var mat = GenerateMat(new MaterialData(name, false, newMat));
                     newMatDic.Add(newMat, mat);
                 }
@@ -162,9 +161,7 @@ public class GenerateMaterials : MonoBehaviour
             else
             {
                 if(title != null)
-                {
-                    //StartCoroutine(title.SetAnswer());
-                }
+                    StartCoroutine(title.SetAnswer(name));
             }
         }
     }

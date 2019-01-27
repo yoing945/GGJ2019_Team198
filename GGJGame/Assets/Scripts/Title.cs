@@ -26,11 +26,7 @@ public class Title : MonoBehaviour
             RightScene.SetActive(true);
         }
         else
-        {
             Incorrect();
-            yield return new WaitForSeconds(3);
-            //TODO: 清空错误合照
-        }
     }
     private void Incorrect()
     {
