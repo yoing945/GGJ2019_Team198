@@ -155,8 +155,10 @@ public class GenerateMaterials : MonoBehaviour
         GameObject character = Instantiate(prefab_char);
         character.GetComponent<Image>().sprite = spr;
         character.transform.SetParent(root_char);
+        var rt = character.GetComponent<RectTransform>();
+        rt.localScale = Vector3.one;
         if (photo_char_pos.Count > index)
-            character.GetComponent<RectTransform>().anchoredPosition = photo_char_pos[index];
+            rt.anchoredPosition = photo_char_pos[index];
         return character;
     }
 
