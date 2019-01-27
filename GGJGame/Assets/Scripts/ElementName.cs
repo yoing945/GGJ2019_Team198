@@ -54,6 +54,8 @@ public class ElementName
     public const string Yanglaoyuan = "Yanglaoyuan";
     public const string Yiyuan = "Yiyuan";
     public const string Dingke = "Dingke";
+    public const string Gay = "Gay";
+    public const string Les = "Les";
 }
 
 
@@ -133,6 +135,8 @@ public class ElementNameMgr
         elementsCNDict.Add(ElementName.Yanglaoyuan, "养老院");
         elementsCNDict.Add(ElementName.Yiyuan, "医院全家福");
         elementsCNDict.Add(ElementName.Dingke, "丁克家庭");
+        elementsCNDict.Add(ElementName.Gay, "基佬之家");
+        elementsCNDict.Add(ElementName.Les, "百合之家");
 
     }
 
@@ -358,12 +362,40 @@ public class ElementNameMgr
                 new string[]{ ElementName.Woman,ElementName.RichMan},
            },
            new string[] { ElementName.Dingke });
+
+        netElementRelationDict.Add(
+           new string[][]{
+                new string[]{ ElementName.Woman,ElementName.Woman},
+                
+           },
+           new string[] { ElementName.Les });
+        netElementRelationDict.Add(
+           new string[][]{
+                new string[]{ ElementName.Man, ElementName.Man},
+           },
+           new string[] { ElementName.Gay });
+
     }
 
     private void InitResultElementDict()
     {
         elementsHasResult = new List<string>();
         elementsHasResult.Add(ElementName.Sankouzhijia);
+        elementsHasResult.Add(ElementName.Gueryuan);
+        elementsHasResult.Add(ElementName.Danqinjiating);
+        elementsHasResult.Add(ElementName.Gugualaoren);
+        elementsHasResult.Add(ElementName.Tuhao);
+        elementsHasResult.Add(ElementName.Wanglaowu);
+        elementsHasResult.Add(ElementName.Liushou);
+        elementsHasResult.Add(ElementName.Hougong);
+        elementsHasResult.Add(ElementName.Fupo);
+        elementsHasResult.Add(ElementName.Sishitongtang);
+        elementsHasResult.Add(ElementName.Qiongbi);
+        elementsHasResult.Add(ElementName.Yanglaoyuan);
+        elementsHasResult.Add(ElementName.Yiyuan);
+        elementsHasResult.Add(ElementName.Dingke);
+        elementsHasResult.Add(ElementName.Gay);
+        elementsHasResult.Add(ElementName.Les);
     }
 
     private void InitElementsNumLimitDict()
