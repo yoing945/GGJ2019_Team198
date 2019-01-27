@@ -25,4 +25,16 @@ public class GameMgr : MonoBehaviour
         startGame.gameObject.SetActive(false);
         mainPanel.gameObject.SetActive(true);
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+    public void NextGame()
+    {
+        //清空Box,初始化
+        
+    }
+
 }
