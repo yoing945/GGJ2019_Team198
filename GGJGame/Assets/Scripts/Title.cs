@@ -16,24 +16,38 @@ public class Title : MonoBehaviour
         Block.SetActive(false);
         Quest.color = new Color(Quest.color.r, Quest.color.g, Quest.color.b, 1.0f);
     }
-    public IEnumerator SetAnswer(string Content)
+
+    public void SetAnswer(string Content)
     {
-        if(Quest.text == Content)
+        if (Quest.text == Content)
         {
-            Block.SetActive(false);
+            ResetAnswer();
             //正确答案的效果在这里
-            yield return new WaitForSeconds(3);
-            RightScene.SetActive(true);
+            StartCoroutine(ShowRightScene());
         }
         else
-            Incorrect();
+            Incorrect(Content);
     }
-    private void Incorrect()
+
+    private void Incorrect(string content)
     {
         Quest.color = new Color(Quest.color.r, Quest.color.g, Quest.color.b, 0.2f);
+        Answer.text = content;
         Answer.gameObject.SetActive(true);
         Block.SetActive(true);
     }
 
+    private void ResetAnswer()
+    {
+        Block.SetActive(false);
+        Answer.text = null;
+        Answer.gameObject.SetActive(false);
+    }
 
+    private IEnumerator ShowRightScene()
+    {
+        yield return new WaitForSeconds(3);
+        RightScene.SetActive(true);
+        Quest.text = null;
+    }
 }

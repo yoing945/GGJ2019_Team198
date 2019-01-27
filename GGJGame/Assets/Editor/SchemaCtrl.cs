@@ -20,4 +20,13 @@ public class SchemaCtrl
         AssetDatabase.SaveAssets();
         return asset;
     }
+
+    [MenuItem("Assets/CreateEditor/SchemaTitle")]
+    public static ResTitle CreateTitleSchema()
+    {
+        ResTitle asset = ScriptableObject.CreateInstance<ResTitle>();
+        AssetDatabase.CreateAsset(asset, "Assets/Resources/TitleSchema.asset");
+        AssetDatabase.SaveAssets();
+        return asset;
+    }
 }

@@ -156,7 +156,7 @@ public class ElementNameMgr
                 new string[] { ElementName.Ill, ElementName.Boy},
                 new string[] { ElementName.Ill, ElementName.Girl},
             },
-            new string[] { ElementName.Boy, ElementName.Girl });
+            new string[] { ElementName.Poor });
 
         //combine PoorBoy
         netElementRelationDict.Add(
@@ -383,6 +383,19 @@ public class ElementNameMgr
                 new string[]{ ElementName.Man, ElementName.Man},
            },
            new string[] { ElementName.Gay });
+
+        netElementRelationDict.Add(
+           new string[][]{
+                new string[]{ ElementName.OldMan},
+                new string[]{ ElementName.OldWoman}
+           },
+           new string[] { ElementName.Gugualaoren });
+
+        netElementRelationDict.Add(
+           new string[][] {
+                new string[] { ElementName.Woman,ElementName.Money,ElementName.Time}
+           }, 
+           new string[] { ElementName.RichWoman });
 
     }
 
