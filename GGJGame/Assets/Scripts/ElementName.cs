@@ -391,6 +391,12 @@ public class ElementNameMgr
            },
            new string[] { ElementName.Gugualaoren });
 
+        netElementRelationDict.Add(
+           new string[][] {
+                new string[] { ElementName.Woman,ElementName.Money,ElementName.Time}
+           }, 
+           new string[] { ElementName.RichWoman });
+
     }
 
     private void InitResultElementDict()
