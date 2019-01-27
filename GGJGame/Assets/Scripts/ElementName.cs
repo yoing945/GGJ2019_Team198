@@ -297,6 +297,22 @@ public class ElementNameMgr
             new string[] { ElementName.RichMan, ElementName.RichWoman } },
             new string[] { ElementName.Tuhao });
 
+		netElementRelationDict.Add(
+            new string[][]{
+                new string[]{ ElementName.Woman, ElementName.Man, ElementName.Woman },
+                new string[]{ ElementName.Woman, ElementName.Man, ElementName.Woman, ElementName.Woman }},
+            new string[] { ElementName.Hougong });
+			
+			
+		//combine Qiongbi
+        netElementRelationDict.Add(
+            new string[][]{
+                new string[]{ ElementName.PoorBoy, ElementName.PoorMan, ElementName.PoorWoman },
+                new string[]{ ElementName.PoorBoy, ElementName.PoorMan, ElementName.PoorWoman, ElementName.PoorOldMan },
+                new string[]{ ElementName.PoorBoy, ElementName.PoorMan, ElementName.PoorWoman, ElementName.PoorOldWoman },
+                new string[]{ ElementName.PoorBoy, ElementName.PoorMan, ElementName.PoorWoman, ElementName.PoorOldWoman, ElementName.PoorOldMan },
+                new string[]{ ElementName.PoorGirl, ElementName.PoorMan, ElementName.PoorWoman },
+
         netElementRelationDict.Add(
            new string[][]{
                 new string[]{ ElementName.OldMan, ElementName.Boy, ElementName.Girl, ElementName.OldWoman },
