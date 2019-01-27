@@ -197,12 +197,12 @@ public class ElementNameMgr
         netElementRelationDict.Add(
             new string[][]{
                 new string[]{ ElementName.Man, ElementName.Time, ElementName.Time } },
-            new string[] { ElementName.IllWoman });
+            new string[] { ElementName.OldMan });
         //combine OldWoman
         netElementRelationDict.Add(
             new string[][]{
                 new string[]{ ElementName.Woman, ElementName.Time, ElementName.Time } },
-            new string[] { ElementName.IllWoman });
+            new string[] { ElementName.OldWoman });
 
 
         //combine IllBoy
