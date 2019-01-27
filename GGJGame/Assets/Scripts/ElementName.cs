@@ -95,8 +95,6 @@ public class ElementNameMgr
 
 		elementsCNDict.Add(ElementName.Poor, "贫穷");
 		
-        elementsCNDict.Add(ElementName.IllMan, "生病男性");
-        elementsCNDict.Add(ElementName.IllWoman, "生病女性");
         elementsCNDict.Add(ElementName.Boy, "男孩");
         elementsCNDict.Add(ElementName.Girl, "女孩");
         elementsCNDict.Add(ElementName.OldMan, "老男人");
