@@ -554,14 +554,14 @@ public class SpriteResMgr
         return sprites.ToArray();
     }
 
-    public Sprite getBGSprite(string[] elements)
+    public Sprite getBGSprite(Sprite[] elementsSprites)
     {
         var finalSprites = new List<Sprite>();
         foreach (var keyword in backGroundKeyWords)
         {
-            foreach (var elementName in elements)
+            foreach (var elementSprite in elementsSprites)
             {
-                if (elementName.Contains(keyword))
+                if (elementSprite.name.Contains(keyword))
                 {
                     var s = getKeyWordBGSprite(keyword);
                     if (!finalSprites.Contains(s))
@@ -578,7 +578,7 @@ public class SpriteResMgr
         int index = Random.Range(0, finalSprites.Count);
         var bg = finalSprites[index];
         //Debug---------------------
-        foreach(var element in elements)
+        foreach(var element in elementsSprites)
             Debug.Log("BG:element_" + element);
         Debug.Log("BGname_" + bg.name);
         //--------------------------

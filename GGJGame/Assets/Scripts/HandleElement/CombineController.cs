@@ -62,10 +62,12 @@ public class CombineController
     public static List<Sprite> getResultSprites(string[] elements)
     {
         var spritesMgr = SpriteResMgr.getInstance();
-        var bgKeyWords = spritesMgr.getBGKeyWords();
         var sprites = new List<Sprite>();
-        sprites.Add(spritesMgr.getBGSprite(elements));
-        sprites.AddRange(spritesMgr.getElementsSprites(elements));
+        var elementsSprites = spritesMgr.getElementsSprites(elements);
+        var bgSprite = spritesMgr.getBGSprite(elementsSprites);
+
+        sprites.Add(bgSprite);
+        sprites.AddRange(elementsSprites);
 
         return sprites;
     }
