@@ -17,6 +17,8 @@ public class ElementName
     public const string IllWoman = "IllWoman";                          //生病女性
     public const string Boy = "Boy";                                    //男孩
     public const string Girl = "Girl";                                  //女孩
+    public const string OldMan = "OldMan";                              //老男人
+    public const string OldWoman = "OldWoman";                          //老女人
 
     //[yl] Has Result Element Name
     public const string Sankouzhijia = "Sankouzhijia";                  //三口之家
@@ -47,7 +49,7 @@ public class ElementNameMgr
 
     private Dictionary<string, string> elementsCNDict;                  //中英文对照字典
     private Dictionary<string[][], string[]> netElementRelationDict;      //网状结构元素关系字典
-    private List<string> elementsHasResult;                             //中英文对照字典
+    private List<string> elementsHasResult;                             //不参与合成的结果元素
     private Dictionary<string, int> elementsNumLimitDict;               //元素个数限制,超过个数限制的元素将不会加入组合
 
 
@@ -64,6 +66,8 @@ public class ElementNameMgr
         elementsCNDict.Add(ElementName.IllWoman, "生病女性");
         elementsCNDict.Add(ElementName.Boy, "男孩");
         elementsCNDict.Add(ElementName.Girl, "女孩");
+        elementsCNDict.Add(ElementName.OldMan, "老男人");
+        elementsCNDict.Add(ElementName.OldWoman, "老女人");
 
         elementsCNDict.Add(ElementName.Sankouzhijia, "三口之家");
 
@@ -87,6 +91,17 @@ public class ElementNameMgr
             new string[][]{
                 new string[]{ ElementName.Woman, ElementName.Ill } },
             new string[] { ElementName.IllWoman });
+        //combine OldMan
+        netElementRelationDict.Add(
+            new string[][]{
+                new string[]{ ElementName.Man, ElementName.Ill } },
+            new string[] { ElementName.IllWoman });
+        //combine OldWoman
+        netElementRelationDict.Add(
+            new string[][]{
+                new string[]{ ElementName.Woman, ElementName.Ill } },
+            new string[] { ElementName.IllWoman });
+
         //combine Sankouzhijia
         netElementRelationDict.Add(
             new string[][]{
