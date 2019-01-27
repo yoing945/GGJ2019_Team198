@@ -251,13 +251,15 @@ public class ElementNameMgr
         //combine RichOldMan
         netElementRelationDict.Add(
             new string[][]{
-                new string[]{ ElementName.OldMan, ElementName.Money } },
+                new string[]{ ElementName.OldMan, ElementName.Money } ,
+            new string[] { ElementName.Man, ElementName.Money, ElementName.Time } },
             new string[] { ElementName.RichOldMan });
         //combine RichOldWoman
         netElementRelationDict.Add(
             new string[][]{
-                new string[]{ ElementName.OldWoman, ElementName.Money } },
-            new string[] { ElementName.RichOldWoman });
+                new string[]{ ElementName.OldWoman, ElementName.Money } ,
+                new string[] { ElementName.Woman, ElementName.Money, ElementName.Time } },
+                new string[] { ElementName.RichOldWoman });
         
 
         //combine Sankouzhijia
@@ -391,11 +393,6 @@ public class ElementNameMgr
            },
            new string[] { ElementName.Gugualaoren });
 
-        netElementRelationDict.Add(
-           new string[][] {
-                new string[] { ElementName.Woman,ElementName.Money,ElementName.Time}
-           }, 
-           new string[] { ElementName.RichWoman });
 
     }
 
