@@ -112,6 +112,7 @@ public class GenerateMaterials : MonoBehaviour
 
         //合成新素材(不重复)
         string newMat = CombineController.DoCombineByNetRelation(str_arr);
+        Debug.Log("Input Elements:" + str_arr + " \n Result:" + newMat);
         if (!string.IsNullOrEmpty(newMat))
         {
             //每次合成拍出照片
