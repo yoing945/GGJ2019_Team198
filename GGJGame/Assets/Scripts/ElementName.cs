@@ -22,7 +22,19 @@ public class ElementName
 
     //[yl] Has Result Element Name
     public const string Sankouzhijia = "Sankouzhijia";                  //三口之家
-
+    public const string Gueryuan = "Gueryuan";
+    public const string Danqinjiating = "Danqinjiating";
+    public const string Gugualaoren = "Gugualaoren";
+    public const string Tuhao = "Tuhao";
+    public const string Wanglaowu = "Wanglaowu";
+    public const string Liushou = "Liushou";
+    public const string Hougong = "Hougong";
+    public const string Fupo = "Fupo";
+    public const string Sishitongtang = "Sishitongtang";
+    public const string Qiongbi = "Qiongbi";
+    public const string Yanglaoyuan = "Yanglaoyuan";
+    public const string Yiyuan = "Yiyuan";
+                
 }
 
 
@@ -70,6 +82,18 @@ public class ElementNameMgr
         elementsCNDict.Add(ElementName.OldWoman, "老女人");
 
         elementsCNDict.Add(ElementName.Sankouzhijia, "三口之家");
+        elementsCNDict.Add(ElementName.Gueryuan, "孤儿院");
+        elementsCNDict.Add(ElementName.Danqinjiating, "单亲家庭");
+        elementsCNDict.Add(ElementName.Gugualaoren, "孤寡老人的家");
+        elementsCNDict.Add(ElementName.Tuhao, "土豪的家");
+        elementsCNDict.Add(ElementName.Wanglaowu, "黄金王老五");
+        elementsCNDict.Add(ElementName.Liushou, "留守的家");
+        elementsCNDict.Add(ElementName.Hougong, "后宫");
+        elementsCNDict.Add(ElementName.Fupo, "富婆的家");
+        elementsCNDict.Add(ElementName.Sishitongtang, "四世同堂");
+        elementsCNDict.Add(ElementName.Qiongbi, "穷逼的家");
+        elementsCNDict.Add(ElementName.Yanglaoyuan, "养老院");
+        elementsCNDict.Add(ElementName.Yiyuan, "医院全家福");
 
     }
 
