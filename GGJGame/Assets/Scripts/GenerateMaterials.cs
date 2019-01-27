@@ -132,7 +132,7 @@ public class GenerateMaterials : MonoBehaviour
                     //每次生成前打乱固定位置
                     MessPosOrder();
 
-                    if (photoSprites.Count - 1 < photo_char_pos.Count)
+                    if (photoSprites.Count - 1 <= photo_char_pos.Count)
                     {
                         for (int i = 1; i < photoSprites.Count; i++)
                         {
@@ -222,7 +222,6 @@ public class GenerateMaterials : MonoBehaviour
 
     public void ClearPhoto()
     {
-
         if (root_char != null)
         {
             for (int i = 0; i < root_char.childCount; i++)
