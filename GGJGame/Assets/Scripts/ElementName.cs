@@ -568,7 +568,18 @@ public class SpriteResMgr
             {
                 if(s.name.Contains(e))
                 {
-                    eSprites.Add(s);
+                    //[yl] Super Hard Code!!
+                    if (e == "Man" || e == "Woman")
+                    {
+                        if(!s.name.Contains("Old"))
+                        {
+                            eSprites.Add(s);
+                        }
+                    }
+                    else
+                    {
+                        eSprites.Add(s);
+                    }
                 }
             }
             if(eSprites.Count > 0)
