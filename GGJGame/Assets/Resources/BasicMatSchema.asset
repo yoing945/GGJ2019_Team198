@@ -25,9 +25,6 @@ MonoBehaviour:
   - Name: "\u91D1\u94B1"
     IsLeft: 1
     Label: Money
-  - Name: "\u5065\u5EB7"
-    IsLeft: 1
-    Label: Health
   - Name: "\u75BE\u75C5"
     IsLeft: 1
     Label: Ill

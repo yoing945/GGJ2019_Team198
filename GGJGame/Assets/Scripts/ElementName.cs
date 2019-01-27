@@ -49,7 +49,7 @@ public class ElementName
     public const string Liushou = "Liushou";
     public const string Hougong = "Hougong";
     public const string Fupo = "Fupo";
-    public const string Sishitongtang = "Sishitongtang";
+    public const string Sanshitongtang = "Sanshitongtang";
     public const string Qiongbi = "Qiongbi";
     public const string Yanglaoyuan = "Yanglaoyuan";
     public const string Yiyuan = "Yiyuan";
@@ -131,7 +131,7 @@ public class ElementNameMgr
         elementsCNDict.Add(ElementName.Liushou, "留守的家");
         elementsCNDict.Add(ElementName.Hougong, "后宫");
         elementsCNDict.Add(ElementName.Fupo, "富婆的家");
-        elementsCNDict.Add(ElementName.Sishitongtang, "四世同堂");
+        elementsCNDict.Add(ElementName.Sanshitongtang, "三世同堂");
         elementsCNDict.Add(ElementName.Qiongbi, "穷逼的家");
         elementsCNDict.Add(ElementName.Yanglaoyuan, "养老院");
         elementsCNDict.Add(ElementName.Yiyuan, "医院全家福");
@@ -294,7 +294,7 @@ public class ElementNameMgr
             new string[]{  ElementName.OldWoman,ElementName.Girl, ElementName.Boy, ElementName.Man, ElementName.Woman },
             new string[]{ ElementName.OldMan, ElementName.Boy, ElementName.Man, ElementName.Woman },
             new string[]{ ElementName.OldWoman, ElementName.Boy, ElementName.Man, ElementName.Woman }},
-            new string[] { ElementName.Sishitongtang });
+            new string[] { ElementName.Sanshitongtang });
 
         netElementRelationDict.Add(
             new string[][]{
@@ -408,7 +408,7 @@ public class ElementNameMgr
         elementsHasResult.Add(ElementName.Liushou);
         elementsHasResult.Add(ElementName.Hougong);
         elementsHasResult.Add(ElementName.Fupo);
-        elementsHasResult.Add(ElementName.Sishitongtang);
+        elementsHasResult.Add(ElementName.Sanshitongtang);
         elementsHasResult.Add(ElementName.Qiongbi);
         elementsHasResult.Add(ElementName.Yanglaoyuan);
         elementsHasResult.Add(ElementName.Yiyuan);
@@ -463,10 +463,10 @@ public class ElementNameMgr
     //是否忽略个数限制
     public bool hasNumLimit(string[] inputElements)
     {
-        int curNum = 0;
         foreach(var key in elementsNumLimitDict.Keys)
         {
-            foreach(var element in inputElements)
+            int curNum = 0;
+            foreach (var element in inputElements)
             {
                 if(element == key)
                 {
