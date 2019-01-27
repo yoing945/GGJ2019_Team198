@@ -56,6 +56,7 @@ public class ElementName
     public const string Dingke = "Dingke";
     public const string Gay = "Gay";
     public const string Les = "Les";
+    public const string Danshen = "Danshen";
 }
 
 
@@ -137,6 +138,7 @@ public class ElementNameMgr
         elementsCNDict.Add(ElementName.Dingke, "丁克家庭");
         elementsCNDict.Add(ElementName.Gay, "基佬之家");
         elementsCNDict.Add(ElementName.Les, "百合之家");
+        elementsCNDict.Add(ElementName.Danshen, "单身狗");
 
     }
 
@@ -303,6 +305,13 @@ public class ElementNameMgr
             new string[][]{
                 new string[]{ ElementName.Woman, ElementName.Man, ElementName.Woman },
                 new string[]{ ElementName.Woman, ElementName.Man, ElementName.Woman, ElementName.Woman }},
+            new string[] { ElementName.Hougong });
+
+        netElementRelationDict.Add(
+            new string[][]{
+                new string[]{ ElementName.Woman},
+                new string[]{ ElementName.Man}
+            },
             new string[] { ElementName.Hougong });
 
 
