@@ -13,8 +13,27 @@ public class ElementName
     public const string Money = "Money";                                //单位金钱
 
     //[yl] Combine Element Name
+    public const string Poor = "Poor";
+
+    public const string IllBoy = "IllBoy";
+    public const string IllGirl = "IllGirl";
     public const string IllMan = "IllMan";                              //生病男性
     public const string IllWoman = "IllWoman";                          //生病女性
+    public const string IllOldMan = "IllOldMan";
+    public const string IllOldWoman = "IllOldWoman";
+
+    public const string RichMan = "RichMan";
+    public const string RichWoman = "RichWoman";
+    public const string RichOldMan = "RichOldMan";
+    public const string RichOldWoman = "RichOldMan";
+
+    public const string PoorBoy = "PoorBoy";
+    public const string PoorGirl = "PoorGirl";
+    public const string PoorMan = "PoorMan";
+    public const string PoorWoman = "PoorWoman";
+    public const string PoorOldMan = "PoorOldMan";
+    public const string PoorOldWoman = "PoorOldWoman";
+
     public const string Boy = "Boy";                                    //男孩
     public const string Girl = "Girl";                                  //女孩
     public const string OldMan = "OldMan";                              //老男人
@@ -74,6 +93,8 @@ public class ElementNameMgr
         elementsCNDict.Add(ElementName.Time, "单位时间");
         elementsCNDict.Add(ElementName.Money, "单位金钱");
 
+		elementsCNDict.Add(ElementName.Poor, "贫穷");
+		
         elementsCNDict.Add(ElementName.IllMan, "生病男性");
         elementsCNDict.Add(ElementName.IllWoman, "生病女性");
         elementsCNDict.Add(ElementName.Boy, "男孩");
@@ -81,8 +102,27 @@ public class ElementNameMgr
         elementsCNDict.Add(ElementName.OldMan, "老男人");
         elementsCNDict.Add(ElementName.OldWoman, "老女人");
 
+        elementsCNDict.Add(ElementName.IllBoy, "生病男孩");
+        elementsCNDict.Add(ElementName.IllGirl, "生病女孩");
+        elementsCNDict.Add(ElementName.IllMan, "生病男性");
+        elementsCNDict.Add(ElementName.IllWoman, "生病女性");
+        elementsCNDict.Add(ElementName.IllOldMan, "生病老男人");
+        elementsCNDict.Add(ElementName.IllOldWoman, "生病老女人");
+
+        elementsCNDict.Add(ElementName.RichMan, "富男");
+        elementsCNDict.Add(ElementName.RichWoman, "富女");
+        elementsCNDict.Add(ElementName.RichOldMan, "富公");
+        elementsCNDict.Add(ElementName.RichOldWoman, "富婆");
+
+        elementsCNDict.Add(ElementName.PoorGirl, "贫穷女孩");
+        elementsCNDict.Add(ElementName.PoorBoy, "贫穷男孩");
+        elementsCNDict.Add(ElementName.PoorMan, "贫穷男人");
+        elementsCNDict.Add(ElementName.PoorWoman, "贫穷女人");
+        elementsCNDict.Add(ElementName.PoorOldMan, "贫穷老男人");
+        elementsCNDict.Add(ElementName.PoorOldWoman, "贫穷老女人");
+
         elementsCNDict.Add(ElementName.Sankouzhijia, "三口之家");
-        elementsCNDict.Add(ElementName.Gueryuan, "孤儿院");
+		elementsCNDict.Add(ElementName.Gueryuan, "孤儿院");
         elementsCNDict.Add(ElementName.Danqinjiating, "单亲家庭");
         elementsCNDict.Add(ElementName.Gugualaoren, "孤寡老人的家");
         elementsCNDict.Add(ElementName.Tuhao, "土豪的家");
@@ -100,31 +140,120 @@ public class ElementNameMgr
     private void InitNetDict()
     {
         netElementRelationDict = new Dictionary<string[][], string[]>();
+
+        //combine Poor
+        netElementRelationDict.Add(
+            new string[][] {
+                new string[] { ElementName.Ill, ElementName.Man},
+                new string[] { ElementName.Ill, ElementName.Woman},
+                new string[] { ElementName.Ill, ElementName.OldMan},
+                new string[] { ElementName.Ill, ElementName.OldWoman},
+                new string[] { ElementName.Ill, ElementName.Boy},
+                new string[] { ElementName.Ill, ElementName.Girl},
+            },
+            new string[] { ElementName.Boy, ElementName.Girl });
+
+        //combine PoorBoy
+        netElementRelationDict.Add(
+            new string[][] {
+                new string[] { ElementName.Poor, ElementName.Boy} },
+            new string[] { ElementName.PoorBoy});
+        //combine PoorGirl
+        netElementRelationDict.Add(
+            new string[][] {
+                new string[] { ElementName.Poor, ElementName.Girl} },
+            new string[] { ElementName.PoorGirl });
+        //combine PoorMan
+        netElementRelationDict.Add(
+            new string[][] {
+                new string[] { ElementName.Poor, ElementName.Man} },
+            new string[] { ElementName.PoorMan });
+        //combine PoorWoman
+        netElementRelationDict.Add(
+            new string[][] {
+                new string[] { ElementName.Poor, ElementName.Woman} },
+            new string[] { ElementName.PoorWoman });
+        //combine PoorOldMan
+        netElementRelationDict.Add(
+            new string[][] {
+                new string[] { ElementName.Poor, ElementName.OldMan} },
+            new string[] { ElementName.PoorOldMan });
+        //combine PoorOldWoman
+        netElementRelationDict.Add(
+            new string[][] {
+                new string[] { ElementName.Poor, ElementName.OldWoman} },
+            new string[] { ElementName.PoorOldWoman });
+
         //combine Boy or Girl
         netElementRelationDict.Add(
             new string[][] {
                 new string[] { ElementName.Man, ElementName.Woman, ElementName.Time } },
             new string[] { ElementName.Boy, ElementName.Girl});
-        //combine IllMan
-        netElementRelationDict.Add(
-            new string[][] {
-                new string[] { ElementName.Man, ElementName.Ill } },
-            new string[] { ElementName.IllMan });
-        //combine IllWoman
-        netElementRelationDict.Add(
-            new string[][]{
-                new string[]{ ElementName.Woman, ElementName.Ill } },
-            new string[] { ElementName.IllWoman });
+
         //combine OldMan
         netElementRelationDict.Add(
             new string[][]{
-                new string[]{ ElementName.Man, ElementName.Ill } },
+                new string[]{ ElementName.Man, ElementName.Time, ElementName.Time } },
             new string[] { ElementName.IllWoman });
         //combine OldWoman
         netElementRelationDict.Add(
             new string[][]{
-                new string[]{ ElementName.Woman, ElementName.Ill } },
+                new string[]{ ElementName.Woman, ElementName.Time, ElementName.Time } },
             new string[] { ElementName.IllWoman });
+
+
+        //combine IllBoy
+        netElementRelationDict.Add(
+            new string[][]{
+                new string[]{ ElementName.Boy, ElementName.Ill, ElementName.Money } },
+            new string[] { ElementName.IllBoy });
+        //combine IllGirl
+        netElementRelationDict.Add(
+            new string[][]{
+                new string[]{ ElementName.Boy, ElementName.Ill, ElementName.Money } },
+            new string[] { ElementName.IllGirl });
+        //combine IllMan
+        netElementRelationDict.Add(
+            new string[][] {
+                new string[] { ElementName.Man, ElementName.Ill, ElementName.Money } },
+            new string[] { ElementName.IllMan });
+        //combine IllWoman
+        netElementRelationDict.Add(
+            new string[][]{
+                new string[]{ ElementName.Woman, ElementName.Ill, ElementName.Money } },
+            new string[] { ElementName.IllWoman });
+        //combine IllOldMan
+        netElementRelationDict.Add(
+            new string[][] {
+                new string[] { ElementName.OldMan, ElementName.Ill, ElementName.Money } },
+            new string[] { ElementName.IllOldMan });
+        //combine IllOldWoman
+        netElementRelationDict.Add(
+            new string[][]{
+                new string[]{ ElementName.OldWoman, ElementName.Ill, ElementName.Money } },
+            new string[] { ElementName.IllOldWoman });
+
+        //combine RichMan
+        netElementRelationDict.Add(
+            new string[][]{
+                new string[]{ ElementName.Man, ElementName.Money } },
+            new string[] { ElementName.RichMan });
+        //combine RichWoman
+        netElementRelationDict.Add(
+            new string[][]{
+                new string[]{ ElementName.Woman, ElementName.Money } },
+            new string[] { ElementName.RichWoman });
+        //combine RichOldMan
+        netElementRelationDict.Add(
+            new string[][]{
+                new string[]{ ElementName.OldMan, ElementName.Money } },
+            new string[] { ElementName.RichOldMan });
+        //combine RichOldWoman
+        netElementRelationDict.Add(
+            new string[][]{
+                new string[]{ ElementName.OldWoman, ElementName.Money } },
+            new string[] { ElementName.RichOldWoman });
+        
 
         //combine Sankouzhijia
         netElementRelationDict.Add(
