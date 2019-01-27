@@ -89,13 +89,10 @@ public class GenerateMaterials : MonoBehaviour
         AudioSource audio = btn_compose.GetComponent<AudioSource>();
         audio.Play();
         StartCoroutine(Compose());
-
     }
 
     private IEnumerator Compose()
     {
-        if (root_drag.childCount < 2)
-            yield break;
         //得到合成因子，并删除素材
         string[] str_arr = new string[root_drag.childCount];
         for (int i = 0; i < str_arr.Length; i++)
@@ -128,7 +125,7 @@ public class GenerateMaterials : MonoBehaviour
                 {
                     //每次生成前打乱固定位置
                     MessPosOrder();
-                    
+
                     if (photoSprites.Count - 1 < photo_char_pos.Count)
                     {
                         for (int i = 1; i < photoSprites.Count; i++)
@@ -163,7 +160,7 @@ public class GenerateMaterials : MonoBehaviour
             }
             else
             {
-                if(title != null)
+                if (title != null)
                     StartCoroutine(title.SetAnswer(name));
             }
         }
@@ -220,7 +217,7 @@ public class GenerateMaterials : MonoBehaviour
     public void ClearPhoto()
     {
 
-        if(root_char != null)
+        if (root_char != null)
         {
             for (int i = 0; i < root_char.childCount; i++)
                 Destroy(root_char.GetChild(i).gameObject);
