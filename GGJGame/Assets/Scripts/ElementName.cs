@@ -302,9 +302,9 @@ public class ElementNameMgr
                 new string[]{ ElementName.Woman, ElementName.Man, ElementName.Woman },
                 new string[]{ ElementName.Woman, ElementName.Man, ElementName.Woman, ElementName.Woman }},
             new string[] { ElementName.Hougong });
-			
-			
-		//combine Qiongbi
+
+
+        //combine Qiongbi
         netElementRelationDict.Add(
             new string[][]{
                 new string[]{ ElementName.PoorBoy, ElementName.PoorMan, ElementName.PoorWoman },
@@ -312,15 +312,18 @@ public class ElementNameMgr
                 new string[]{ ElementName.PoorBoy, ElementName.PoorMan, ElementName.PoorWoman, ElementName.PoorOldWoman },
                 new string[]{ ElementName.PoorBoy, ElementName.PoorMan, ElementName.PoorWoman, ElementName.PoorOldWoman, ElementName.PoorOldMan },
                 new string[]{ ElementName.PoorGirl, ElementName.PoorMan, ElementName.PoorWoman },
+                new string[]{ ElementName.PoorGirl, ElementName.PoorMan, ElementName.PoorWoman, ElementName.PoorOldMan },
+                new string[]{ ElementName.PoorGirl, ElementName.PoorMan, ElementName.PoorWoman, ElementName.PoorOldWoman },
+                new string[]{ ElementName.PoorGirl, ElementName.PoorMan, ElementName.PoorWoman, ElementName.PoorOldWoman, ElementName.PoorOldMan },},
+             new string[] { ElementName.Qiongbi });
 
         netElementRelationDict.Add(
            new string[][]{
                 new string[]{ ElementName.OldMan, ElementName.Boy, ElementName.Girl, ElementName.OldWoman },
-            new string[]{ ElementName.OldMan, ElementName.Boy, ElementName.Girl },
-            new string[]{  ElementName.Boy, ElementName.Girl, ElementName.OldWoman },
-           new string[]{ ElementName.OldMan,  ElementName.Girl, ElementName.OldWoman },
-           new string[]{ ElementName.OldMan, ElementName.Boy, ElementName.OldWoman }
-           },
+                new string[]{ ElementName.OldMan, ElementName.Boy, ElementName.Girl },
+                new string[]{  ElementName.Boy, ElementName.Girl, ElementName.OldWoman },
+                new string[]{ ElementName.OldMan,  ElementName.Girl, ElementName.OldWoman },
+                new string[]{ ElementName.OldMan, ElementName.Boy, ElementName.OldWoman }},
            new string[] { ElementName.Liushou });
 
         netElementRelationDict.Add(
