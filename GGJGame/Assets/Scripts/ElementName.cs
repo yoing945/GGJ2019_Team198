@@ -577,7 +577,11 @@ public class SpriteResMgr
         }
         int index = Random.Range(0, finalSprites.Count);
         var bg = finalSprites[index];
-        Debug.Log("BG: elements_" + elements + " bg:" + bg.name);
+        //Debug---------------------
+        foreach(var element in elements)
+            Debug.Log("BG:element_" + element);
+        Debug.Log("BGname_" + bg.name);
+        //--------------------------
         return bg;
     }
 
