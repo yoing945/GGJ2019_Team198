@@ -46,7 +46,7 @@ public class ElementNameMgr
     }
 
     private Dictionary<string, string> elementsCNDict;                  //中英文对照字典
-    private Dictionary<string[], string[]> netElementRelationDict;      //网状结构元素关系字典
+    private Dictionary<string[][], string[]> netElementRelationDict;      //网状结构元素关系字典
     private List<string> elementsHasResult;                             //中英文对照字典
     private Dictionary<string, int> elementsNumLimitDict;               //元素个数限制,超过个数限制的元素将不会加入组合
 
@@ -71,28 +71,28 @@ public class ElementNameMgr
 
     private void InitNetDict()
     {
-        netElementRelationDict = new Dictionary<string[], string[]>();
+        netElementRelationDict = new Dictionary<string[][], string[]>();
         //combine Boy or Girl
         netElementRelationDict.Add(
-            new string[] { ElementName.Man, ElementName.Woman, ElementName.Time },
+            new string[][] {
+                new string[] { ElementName.Man, ElementName.Woman, ElementName.Time } },
             new string[] { ElementName.Boy, ElementName.Girl});
         //combine IllMan
         netElementRelationDict.Add(
-            new string[] { ElementName.Man, ElementName.Ill },
+            new string[][] {
+                new string[] { ElementName.Man, ElementName.Ill } },
             new string[] { ElementName.IllMan });
         //combine IllWoman
         netElementRelationDict.Add(
-            new string[] { ElementName.Woman, ElementName.Ill },
+            new string[][]{
+                new string[]{ ElementName.Woman, ElementName.Ill } },
             new string[] { ElementName.IllWoman });
-        //combine Sankouzhijia [girl]
+        //combine Sankouzhijia
         netElementRelationDict.Add(
-            new string[] { ElementName.Woman, ElementName.Man, ElementName.Girl },
+            new string[][]{
+                new string[]{ ElementName.Woman, ElementName.Man, ElementName.Girl },
+                new string[]{ ElementName.Woman, ElementName.Man, ElementName.Boy }},
             new string[] { ElementName.Sankouzhijia });
-        //combine Sankouzhijia [boy]
-        netElementRelationDict.Add(
-            new string[] { ElementName.Woman, ElementName.Man, ElementName.Boy },
-            new string[] { ElementName.Sankouzhijia });
-
     }
 
     private void InitResultElementDict()
@@ -118,7 +118,7 @@ public class ElementNameMgr
     }
 
     //[yl] 获取网状关系字典
-    public Dictionary<string[], string[]> getNetElementRelationDict()
+    public Dictionary<string[][], string[]> getNetElementRelationDict()
     {
         return netElementRelationDict;
     }

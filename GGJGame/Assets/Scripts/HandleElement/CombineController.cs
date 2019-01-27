@@ -11,35 +11,39 @@ public class CombineController
     {
         var elementNameMgr = ElementNameMgr.getInstance();
         var NERD = elementNameMgr.getNetElementRelationDict();
-        
-        foreach(var reasons in NERD.Keys)
+
+        foreach(var allreasons in NERD.Keys)
         {
-            //若元素没有个数限制,那么reasons和inputElements必须完全对应
-            if (!elementNameMgr.hasNumLimit(inputElements))
+            foreach (var reasons in allreasons)
             {
-                if (inputElements.Length != reasons.Length)
-                    continue;
-            }
-            var tempReasons = new List<string>(reasons);
-            for(int i = 0; i < inputElements.Length; ++i)
-            {
-                //判断其中一个输入元素是否在因元素中
-                for(int j = 0;j < tempReasons.Count; ++j)
+                //若元素没有个数限制,那么reasons和inputElements必须完全对应
+                if (!elementNameMgr.hasNumLimit(inputElements))
                 {
-                    if(tempReasons[j] == inputElements[i])
-                    {
-                        tempReasons.RemoveAt(j);
-                        break;
-                    }
+                    if (inputElements.Length != reasons.Length)
+                        continue;
                 }
-                
+                var tempReasons = new List<string>(reasons);
+                for (int i = 0; i < inputElements.Length; ++i)
+                {
+                    //判断其中一个输入元素是否在因元素中
+                    for (int j = 0; j < tempReasons.Count; ++j)
+                    {
+                        if (tempReasons[j] == inputElements[i])
+                        {
+                            tempReasons.RemoveAt(j);
+                            break;
+                        }
+                    }
+
+                }
+                if (tempReasons.Count == 0)
+                {
+                    var value = NERD[allreasons];
+                    int index = Random.Range(0, value.Length);
+                    return value[index];
+                }
             }
-            if (tempReasons.Count == 0)
-            {
-                var value = NERD[reasons];
-                int index = Random.Range(0, value.Length);
-                return value[index];
-            }
+
         }
         return "";
     }
