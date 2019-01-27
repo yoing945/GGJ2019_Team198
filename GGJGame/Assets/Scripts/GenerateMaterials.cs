@@ -111,18 +111,12 @@ public class GenerateMaterials : MonoBehaviour
         string newMat = CombineController.DoCombineByNetRelation(str_arr);
         if (!string.IsNullOrEmpty(newMat))
         {
-            //判断是照片还是素材
-            if (CombineController.isInResultList(newMat))
+            //每次合成拍出照片
+            var photoSprites = CombineController.getResultSprites(str_arr);
+            if (photoSprites != null)
             {
-                //显示
-                var photoSprites = CombineController.getResultSprites(str_arr);
-                if (photoSprites == null)
-                    yield break;
                 if (photoSprites.Count > 0 && photo_bg != null)
-                {
-                    photo_bg.transform.parent.gameObject.SetActive(true);
                     photo_bg.sprite = photoSprites[0];
-                }
                 if (photoSprites.Count > 1 && prefab_char != null)
                 {
                     //每次生成前打乱固定位置
@@ -130,22 +124,25 @@ public class GenerateMaterials : MonoBehaviour
                     for (int i = 1; i < photoSprites.Count; i++)
                         GenerateChar(photoSprites[i], i);
                 }
-                yield break;
             }
 
-            if (newMatDic.ContainsKey(newMat))
+            //非照片生成素材
+            if (!CombineController.isInResultList(newMat))
             {
-                //重复的提示效果
-                var mat = newMatDic[newMat];
-                mat.SetActive(false);
-                yield return new WaitForSeconds(0.2f);
-                mat.SetActive(true);
-            }
-            else
-            {
-                string name = ElementNameMgr.getInstance().getElementCNName(newMat);
-                var mat = GenerateMat(new MaterialData(name, false, newMat));
-                newMatDic.Add(newMat, mat);
+                if (newMatDic.ContainsKey(newMat))
+                {
+                    //重复的提示效果
+                    var mat = newMatDic[newMat];
+                    mat.SetActive(false);
+                    yield return new WaitForSeconds(0.2f);
+                    mat.SetActive(true);
+                }
+                else
+                {
+                    string name = ElementNameMgr.getInstance().getElementCNName(newMat);
+                    var mat = GenerateMat(new MaterialData(name, false, newMat));
+                    newMatDic.Add(newMat, mat);
+                }
             }
         }
     }

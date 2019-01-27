@@ -830,12 +830,12 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 720, y: 400}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -1372,7 +1372,7 @@ PrefabInstance:
     - target: {fileID: 1970560434680373055, guid: 96b4e09e8cb0bad4d8183f667f5a7dae,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1970560434680372992, guid: 96b4e09e8cb0bad4d8183f667f5a7dae,
         type: 3}
@@ -1578,25 +1578,6 @@ MonoBehaviour:
   root_right: {fileID: 1717537592}
   prefab_mat: {fileID: 994443614091416209, guid: be016a26af5d16145878e84268e53319,
     type: 3}
-  basicMatList:
-  - Name: "\u7537\u4EBA"
-    IsLeft: 1
-    Label: Man
-  - Name: "\u5973\u4EBA"
-    IsLeft: 1
-    Label: Woman
-  - Name: "\u65F6\u95F4"
-    IsLeft: 1
-    Label: Time
-  - Name: "\u91D1\u94B1"
-    IsLeft: 1
-    Label: Money
-  - Name: "\u5065\u5EB7"
-    IsLeft: 1
-    Label: Health
-  - Name: "\u75BE\u75C5"
-    IsLeft: 1
-    Label: Ill
   btn_compose: {fileID: 589842454}
   root_drag: {fileID: 1523525646}
   flash: {fileID: 196088139}
@@ -1604,7 +1585,6 @@ MonoBehaviour:
   root_char: {fileID: 2106609894}
   prefab_char: {fileID: 8213631776468899867, guid: a75d1f8bec92f5b46912f89820b33ae3,
     type: 3}
-  photo_char_pos: []
 --- !u!1 &1314365005
 GameObject:
   m_ObjectHideFlags: 0
