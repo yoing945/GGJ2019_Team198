@@ -156,7 +156,7 @@ public class ElementNameMgr
                 new string[] { ElementName.Ill, ElementName.Boy},
                 new string[] { ElementName.Ill, ElementName.Girl},
             },
-            new string[] { ElementName.Boy, ElementName.Girl });
+            new string[] { ElementName.Poor });
 
         //combine PoorBoy
         netElementRelationDict.Add(
