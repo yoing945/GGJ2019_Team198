@@ -261,6 +261,77 @@ public class ElementNameMgr
                 new string[]{ ElementName.Woman, ElementName.Man, ElementName.Girl },
                 new string[]{ ElementName.Woman, ElementName.Man, ElementName.Boy }},
             new string[] { ElementName.Sankouzhijia });
+
+        netElementRelationDict.Add(
+            new string[][]{
+                new string[]{ ElementName.OldMan, ElementName.OldWoman,ElementName.OldWoman }
+            ,   new string[]{ ElementName.OldMan, ElementName.OldMan, ElementName.OldWoman },
+             new string[]{ ElementName.OldMan, ElementName.OldMan, ElementName.OldMan },
+            new string[]{ ElementName.OldWoman, ElementName.OldWoman,ElementName.OldWoman }},
+            new string[] { ElementName.Yanglaoyuan });
+
+        netElementRelationDict.Add(
+            new string[][]{
+                new string[]{ ElementName.Boy, ElementName.Girl,ElementName.Girl }
+            ,   new string[]{ ElementName.Boy, ElementName.Boy, ElementName.Girl },
+             new string[]{ ElementName.Boy, ElementName.Boy, ElementName.Boy },
+            new string[]{ ElementName.Girl, ElementName.Girl, ElementName.Girl }},
+            new string[] { ElementName.Gueryuan });
+
+        netElementRelationDict.Add(
+            new string[][]{
+                new string[]{ ElementName.OldMan, ElementName.OldWoman,ElementName.Girl, ElementName.Boy, ElementName.Man, ElementName.Woman }
+            ,   new string[]{ ElementName.OldMan, ElementName.OldWoman,ElementName.Girl, ElementName.Man, ElementName.Woman },
+             new string[]{ ElementName.OldMan, ElementName.OldWoman, ElementName.Boy, ElementName.Man, ElementName.Woman } ,
+            new string[]{ ElementName.OldMan, ElementName.Girl, ElementName.Boy, ElementName.Man, ElementName.Woman },
+            new string[]{  ElementName.OldWoman,ElementName.Girl, ElementName.Boy, ElementName.Man, ElementName.Woman },
+            new string[]{ ElementName.OldMan, ElementName.Boy, ElementName.Man, ElementName.Woman },
+            new string[]{ ElementName.OldWoman, ElementName.Boy, ElementName.Man, ElementName.Woman }},
+            new string[] { ElementName.Sishitongtang });
+
+        netElementRelationDict.Add(
+            new string[][]{
+                new string[]{ ElementName.RichOldMan, ElementName.RichOldWoman, ElementName.RichMan, ElementName.RichWoman },
+            new string[]{ ElementName.RichOldMan, ElementName.RichOldWoman},
+            new string[] { ElementName.RichMan, ElementName.RichWoman } },
+            new string[] { ElementName.Tuhao });
+
+        netElementRelationDict.Add(
+           new string[][]{
+                new string[]{ ElementName.OldMan, ElementName.Boy, ElementName.Girl, ElementName.OldWoman },
+            new string[]{ ElementName.OldMan, ElementName.Boy, ElementName.Girl },
+            new string[]{  ElementName.Boy, ElementName.Girl, ElementName.OldWoman },
+           new string[]{ ElementName.OldMan,  ElementName.Girl, ElementName.OldWoman },
+           new string[]{ ElementName.OldMan, ElementName.Boy, ElementName.OldWoman }
+           },
+           new string[] { ElementName.Liushou });
+
+        netElementRelationDict.Add(
+           new string[][]{
+                new string[]{ ElementName.Man, ElementName.Boy, ElementName.Girl},
+            new string[]{ ElementName.Woman, ElementName.Boy, ElementName.Girl },
+            new string[]{ ElementName.Man, ElementName.Boy},
+            new string[]{ ElementName.Woman, ElementName.Girl },
+            new string[]{ ElementName.Woman, ElementName.Boy},
+            new string[]{ ElementName.Man, ElementName.Girl },
+           },
+           new string[] { ElementName.Danqinjiating });
+
+        netElementRelationDict.Add(
+           new string[][]{
+                new string[]{ ElementName.RichWoman, ElementName.Man, ElementName.Man},
+            new string[]{ ElementName.RichWoman, ElementName.Man},
+            new string[]{ ElementName.RichWoman, ElementName.Man, ElementName.Man,ElementName.Man},
+            new string[]{ ElementName.RichWoman, ElementName.Man, ElementName.Man,ElementName.Man},
+           },
+           new string[] { ElementName.Fupo });
+
+        netElementRelationDict.Add(
+           new string[][]{
+                new string[]{ ElementName.RichWoman},
+            new string[]{ ElementName.RichWoman},
+           },
+           new string[] { ElementName.Wanglaowu });
     }
 
     private void InitResultElementDict()
@@ -274,6 +345,11 @@ public class ElementNameMgr
         elementsNumLimitDict = new Dictionary<string, int>();
         elementsNumLimitDict.Add(ElementName.Time, 2);
         elementsNumLimitDict.Add(ElementName.Money, 2);
+        elementsNumLimitDict.Add(ElementName.OldMan, 3);
+        elementsNumLimitDict.Add(ElementName.OldWoman, 3);
+        elementsNumLimitDict.Add(ElementName.Man, 3);
+        elementsNumLimitDict.Add(ElementName.Girl, 3);
+        elementsNumLimitDict.Add(ElementName.Boy, 3);
     }
 
     //[yl] 获取中文名
