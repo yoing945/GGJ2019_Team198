@@ -18,6 +18,7 @@ public class Title : MonoBehaviour
     }
     public IEnumerator SetAnswer(string Content)
     {
+        Debug.Log(Content);
         if (Quest.text == Content)
         {
             Block.SetActive(false);
