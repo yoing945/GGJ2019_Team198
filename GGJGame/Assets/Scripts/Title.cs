@@ -17,15 +17,13 @@ public class Title : MonoBehaviour
         Quest.color = new Color(Quest.color.r, Quest.color.g, Quest.color.b, 1.0f);
     }
 
-    public IEnumerator SetAnswer(string Content)
+    public void SetAnswer(string Content)
     {
         if (Quest.text == Content)
         {
             ResetAnswer();
             //正确答案的效果在这里
-            yield return new WaitForSeconds(3);
-            RightScene.SetActive(true);
-            Quest.text = null;
+            StartCoroutine(ShowRightScene());
         }
         else
             Incorrect(Content);
@@ -44,5 +42,12 @@ public class Title : MonoBehaviour
         Block.SetActive(false);
         Answer.text = null;
         Answer.gameObject.SetActive(false);
+    }
+
+    private IEnumerator ShowRightScene()
+    {
+        yield return new WaitForSeconds(3);
+        RightScene.SetActive(true);
+        Quest.text = null;
     }
 }

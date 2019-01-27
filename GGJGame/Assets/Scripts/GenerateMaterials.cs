@@ -95,10 +95,10 @@ public class GenerateMaterials : MonoBehaviour
     {
         AudioSource audio = btn_compose.GetComponent<AudioSource>();
         audio.Play();
-        StartCoroutine(Compose());
+        Compose();
     }
 
-    private IEnumerator Compose()
+    private void Compose()
     {
         //得到合成因子，并删除素材
         string[] str_arr = new string[root_drag.childCount];
@@ -113,8 +113,7 @@ public class GenerateMaterials : MonoBehaviour
         if (flash != null)
         {
             flash.SetActive(true);
-            yield return new WaitForSeconds(0.2f);
-            flash.SetActive(false);
+            StartCoroutine(DelaySetFalse(flash));
         }
 
         //合成新素材(不重复)
@@ -156,8 +155,7 @@ public class GenerateMaterials : MonoBehaviour
                     //重复的提示效果
                     var mat = newMatDic[newMat];
                     mat.SetActive(false);
-                    yield return new WaitForSeconds(0.2f);
-                    mat.SetActive(true);
+                    StartCoroutine(DelaySetFalse(mat));
                 }
                 else
                 {
@@ -168,7 +166,7 @@ public class GenerateMaterials : MonoBehaviour
             else
             {
                 if (title != null)
-                    StartCoroutine(title.SetAnswer(name));
+                    title.SetAnswer(name);
             }
         }
     }
@@ -244,5 +242,11 @@ public class GenerateMaterials : MonoBehaviour
             string name = titleList[Random.Range(0, titleList.Count)];
             title.SetQuest(name);
         }
+    }
+
+    private IEnumerator DelaySetFalse(GameObject go)
+    {
+        yield return new WaitForSeconds(0.2f);
+        go.SetActive(false);
     }
 }
