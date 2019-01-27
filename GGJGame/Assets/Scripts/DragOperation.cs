@@ -123,7 +123,11 @@ public class DragOperation : MonoBehaviour
             {
                 Vector2 position;
                 RectTransformUtility.ScreenPointToLocalPointInRectangle(GetComponent<RectTransform>(), Input.mousePosition, null, out position);
+#if UNITY_EDITOR
+                moveTarget.anchoredPosition = position;
+#else
                 moveTarget.anchoredPosition = position-new Vector2(0,moveTarget.sizeDelta.y);
+#endif
                 
             }
         }
