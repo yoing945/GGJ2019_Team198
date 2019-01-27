@@ -42,6 +42,7 @@ public class Title : MonoBehaviour
         Block.SetActive(false);
         Answer.text = null;
         Answer.gameObject.SetActive(false);
+        Quest.color = new Color(Quest.color.r, Quest.color.g, Quest.color.b, 1.0f);
     }
 
     private IEnumerator ShowRightScene()
