@@ -333,7 +333,11 @@ public class ElementNameMgr
         netElementRelationDict.Add(
            new string[][]{
                 new string[]{ ElementName.OldMan, ElementName.Boy, ElementName.Girl, ElementName.OldWoman },
-                new string[]{ ElementName.OldMan, ElementName.Boy, ElementName.Girl },
+                new string[]{ ElementName.OldMan, ElementName.Boy, ElementName.Girl},
+                new string[]{ ElementName.OldMan, ElementName.Boy},
+                new string[]{ ElementName.OldWoman, ElementName.Girl },
+                new string[]{ ElementName.OldWoman, ElementName.Boy},
+                new string[]{ ElementName.OldMan, ElementName.Girl },
                 new string[]{  ElementName.Boy, ElementName.Girl, ElementName.OldWoman },
                 new string[]{ ElementName.OldMan,  ElementName.Girl, ElementName.OldWoman },
                 new string[]{ ElementName.OldMan, ElementName.Boy, ElementName.OldWoman }},
