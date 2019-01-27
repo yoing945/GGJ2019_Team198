@@ -42,6 +42,8 @@ public class GenerateMaterials : MonoBehaviour
     private List<Vector2> tempOrderVec2List = new List<Vector2>();
 
     public Title title;
+    //主题列表
+    private List<string> titleList = new List<string>();
 
     void Start()
     {
@@ -49,6 +51,8 @@ public class GenerateMaterials : MonoBehaviour
         GenerateMats();
         if (btn_compose != null)
             btn_compose.onClick.AddListener(OnBtnComposeClick);
+        //游戏开始
+        SetTitle();
     }
 
     private void LoadRes()
@@ -59,6 +63,9 @@ public class GenerateMaterials : MonoBehaviour
         var resMaterial = Resources.Load("BasicMatSchema") as ResMaterial;
         if (resMaterial != null)
             basicMatList = resMaterial.basicMatData;
+        var resTitle = Resources.Load("TitleSchema") as ResTitle;
+        if (resTitle != null)
+            titleList = resTitle.titleList;
     }
 
     private void GenerateMats()
@@ -228,5 +235,14 @@ public class GenerateMaterials : MonoBehaviour
         //每次生成人物前清空
         tempOrderSprList.Clear();
         tempOrderVec2List.Clear();
+    }
+
+    public void SetTitle()
+    {
+        if (title != null)
+        {
+            string name = titleList[Random.Range(0, titleList.Count)];
+            title.SetQuest(name);
+        }
     }
 }

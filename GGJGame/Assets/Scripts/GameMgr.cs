@@ -18,10 +18,6 @@ public class GameMgr : MonoBehaviour
         audio.Play();
     }
 
-    void Update()
-    {
-    }
-
     public void OpenMainPanel()
     {
         startGame.gameObject.SetActive(false);
@@ -41,7 +37,6 @@ public class GameMgr : MonoBehaviour
 #else
         Application.Quit();
 #endif
-
     }
 
     public void NextGame()
@@ -51,7 +46,11 @@ public class GameMgr : MonoBehaviour
         {
             var gm = mainPanel.GetComponent<GenerateMaterials>();
             if (gm != null)
+            {
                 gm.ClearPhoto();
+                //设置下一关主题
+                gm.SetTitle();
+            }
         }
         rightScene.SetActive(false);
     }

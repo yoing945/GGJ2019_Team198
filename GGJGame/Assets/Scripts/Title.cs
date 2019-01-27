@@ -18,7 +18,7 @@ public class Title : MonoBehaviour
     }
     public IEnumerator SetAnswer(string Content)
     {
-        if(Quest.text == Content)
+        if (Quest.text == Content)
         {
             Block.SetActive(false);
             //正确答案的效果在这里
@@ -34,6 +34,4 @@ public class Title : MonoBehaviour
         Answer.gameObject.SetActive(true);
         Block.SetActive(true);
     }
-
-
 }
