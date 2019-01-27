@@ -312,7 +312,7 @@ public class ElementNameMgr
                 new string[]{ ElementName.Woman},
                 new string[]{ ElementName.Man}
             },
-            new string[] { ElementName.Hougong });
+            new string[] { ElementName.Danshen });
 
 
         //combine Qiongbi
