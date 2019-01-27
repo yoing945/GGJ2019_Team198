@@ -20,28 +20,21 @@ public class CombineController
                 if (inputElements.Length != reasons.Length)
                     continue;
             }
-            var allInReasons = true;
+            var tempReasons = new List<string>(reasons);
             for(int i = 0; i < inputElements.Length; ++i)
             {
-                var inReasons = false;
                 //判断其中一个输入元素是否在因元素中
-                for(int j = 0; j< reasons.Length; ++j)
+                for(int j = 0;j < tempReasons.Count; ++j)
                 {
-                    if (reasons[j] == inputElements[i])
+                    if(tempReasons[j] == inputElements[i])
                     {
-                        inReasons = true;
+                        tempReasons.RemoveAt(j);
                         break;
                     }
                 }
-                //有输入元素不在因元素中,那么排除这个这一种转换
-                if (!inReasons)
-                {
-                    allInReasons = false;
-                    break;
-                }
                 
             }
-            if (allInReasons)
+            if (tempReasons.Count == 0)
             {
                 var value = NERD[reasons];
                 int index = Random.Range(0, value.Length);
@@ -68,6 +61,7 @@ public class CombineController
         var bgKeyWords = spritesMgr.getBGKeyWords();
         var sprites = new List<Sprite>();
         sprites.Add(spritesMgr.getBGSprite(elements));
+        sprites.AddRange(spritesMgr.getElementsSprites(elements));
 
         return sprites;
     }

@@ -246,6 +246,28 @@ public class SpriteResMgr
         int index = Random.Range(0, normalBGs.Length);
         return normalBGs[index];
     }
+
+    public Sprite[] getElementsSprites(string[] elements)
+    {
+        var finalSprites = new List<Sprite>();
+        foreach(var e in elements)
+        {
+            var eSprites = new List<Sprite>();
+            foreach(var s in chars)
+            {
+                if(s.name.Contains(e))
+                {
+                    eSprites.Add(s);
+                }
+            }
+            if(eSprites.Count > 0)
+            {
+                int index = Random.Range(0, eSprites.Count);
+                finalSprites.Add(eSprites[index]);
+            }
+        }
+        return finalSprites.ToArray();
+    }
 }
 
 
