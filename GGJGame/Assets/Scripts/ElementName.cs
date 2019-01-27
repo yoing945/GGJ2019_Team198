@@ -542,10 +542,18 @@ public class SpriteResMgr
         var sprites = new List<Sprite>();
         foreach(var s in backGrounds)
         {
+            var canStore = true;
             foreach(var keyword in backGroundKeyWords)
             {
-                if (s != getKeyWordBGSprite(keyword))
-                    sprites.Add(s);
+                if (s.name.Contains(keyword))
+                {
+                    canStore = false;
+                    break;
+                }
+            }
+            if(canStore)
+            {
+                sprites.Add(s);
             }
         }
         return sprites.ToArray();
