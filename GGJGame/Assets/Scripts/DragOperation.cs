@@ -115,7 +115,7 @@ public class DragOperation : MonoBehaviour
                 moveTarget.SetParent(transform);
 
                 moveTarget.sizeDelta = target.GetComponent<RectTransform>().sizeDelta;
-                moveTarget.pivot =Vector2.zero;
+                moveTarget.pivot = Vector2.zero;
                 moveTarget.anchoredPosition = target.transform.position;
                             
             }
@@ -123,7 +123,7 @@ public class DragOperation : MonoBehaviour
             {
                 Vector2 position;
                 RectTransformUtility.ScreenPointToLocalPointInRectangle(GetComponent<RectTransform>(), Input.mousePosition, null, out position);
-                moveTarget.anchoredPosition = position;
+                moveTarget.anchoredPosition = position-new Vector2(0,moveTarget.sizeDelta.y);
                 
             }
         }
