@@ -31,7 +31,7 @@ public class DragOperation : MonoBehaviour
 
         
 
-        if (Input.GetMouseButtonDown(0) && !isCheck)
+        if (/*Input.GetMouseButtonDown(0) */Input.GetTouch(0).phase==TouchPhase.Began&& !isCheck)
         {
             List<RaycastResult> res = GetOverUI(canvas);
             if (res == null) return;
@@ -49,7 +49,7 @@ public class DragOperation : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButton(0) && isCheck)//判断是移动 还是拖动
+        if (/*Input.GetMouseButton(0) */Input.GetTouch(0).phase == TouchPhase.Moved && isCheck)//判断是移动 还是拖动
         {
             if (isDrag) { return; }
             List<RaycastResult> res = GetOverUI(canvas);
@@ -75,7 +75,7 @@ public class DragOperation : MonoBehaviour
             }
 
         }
-        if (Input.GetMouseButtonUp(0))
+        if (/*Input.GetMouseButtonUp(0)*/Input.GetTouch(0).phase == TouchPhase.Ended)
         {
             isCheck = false;
             target = null;
@@ -88,7 +88,7 @@ public class DragOperation : MonoBehaviour
             {
                 isDrag = false;               
                 Vector2 position;
-                RectTransformUtility.ScreenPointToLocalPointInRectangle(GetComponent<RectTransform>(), Input.mousePosition, null, out position);
+                RectTransformUtility.ScreenPointToLocalPointInRectangle(GetComponent<RectTransform>(), /*Input.mousePosition*/Input.GetTouch(0).position, null, out position);
                 if (!(position.x <= RightX && position.x >= LeftX && position.y <= UpY && position.y >= DownY))
                     Destroy(moveTarget.gameObject);
                 else
@@ -122,7 +122,7 @@ public class DragOperation : MonoBehaviour
             if (moveTarget != null)
             {
                 Vector2 position;
-                RectTransformUtility.ScreenPointToLocalPointInRectangle(GetComponent<RectTransform>(), Input.mousePosition, null, out position);
+                RectTransformUtility.ScreenPointToLocalPointInRectangle(GetComponent<RectTransform>(), /*Input.mousePosition*/Input.GetTouch(0).position, null, out position);
 #if UNITY_EDITOR
                 moveTarget.anchoredPosition = position;
 #else
@@ -136,7 +136,7 @@ public class DragOperation : MonoBehaviour
     public List<RaycastResult> GetOverUI(GameObject canvas)
     {
         PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
-        pointerEventData.position = Input.mousePosition;
+        pointerEventData.position =/*Input.mousePosition*/Input.GetTouch(0).position;
         GraphicRaycaster gr = canvas.GetComponent<GraphicRaycaster>();
         List<RaycastResult> results = new List<RaycastResult>();
         gr.Raycast(pointerEventData, results);
