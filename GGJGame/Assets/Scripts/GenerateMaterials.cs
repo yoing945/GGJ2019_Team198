@@ -88,6 +88,9 @@ public class GenerateMaterials : MonoBehaviour
             mat.transform.SetParent(root_left);
         else
             mat.transform.SetParent(root_right);
+
+        var rt =mat.GetComponent<RectTransform>();
+        rt.localScale = Vector3.one;
         return mat;
     }
 
@@ -186,7 +189,7 @@ public class GenerateMaterials : MonoBehaviour
         character.GetComponent<Image>().sprite = spr;
         character.transform.SetParent(root_char);
         var rt = character.GetComponent<RectTransform>();
-        rt.localScale = Vector3.one;
+        //rt.localScale = Vector3.one;
         rt.anchoredPosition = pos;
         return character;
     }
