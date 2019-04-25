@@ -1,2 +1,1 @@
-# GGJ_Test
-global game jam test project
+# global game jam project
